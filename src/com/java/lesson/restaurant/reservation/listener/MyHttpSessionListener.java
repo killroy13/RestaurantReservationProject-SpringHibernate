@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import static com.java.lesson.restaurant.reservation.Attributes.*;
+import static com.java.lesson.restaurant.reservation.attributes.Attributes.*;
 
 /**
  * Created by User on 09.03.2018.

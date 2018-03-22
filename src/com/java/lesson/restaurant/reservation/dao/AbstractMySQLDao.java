@@ -1,6 +1,6 @@
 package com.java.lesson.restaurant.reservation.dao;
 
-import com.java.lesson.restaurant.reservation.Main;
+import tests.Main;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 
 import java.io.IOException;

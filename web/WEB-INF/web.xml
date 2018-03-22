@@ -6,11 +6,11 @@
 
 
     <!--CONTROLLERS-->
-    <!--MyServlet-->
+    <!--RestaurantReservation-->
 
     <servlet>
         <servlet-name>myServlet</servlet-name>
-        <servlet-class>com.java.lesson.restaurant.reservation.controller.MyServlet</servlet-class>
+        <servlet-class>com.java.lesson.restaurant.reservation.controller.RestaurantReservation</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>myServlet</servlet-name>

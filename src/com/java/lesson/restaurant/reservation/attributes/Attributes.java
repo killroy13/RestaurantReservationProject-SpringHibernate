@@ -1,4 +1,4 @@
-package com.java.lesson.restaurant.reservation;
+package com.java.lesson.restaurant.reservation.attributes;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;

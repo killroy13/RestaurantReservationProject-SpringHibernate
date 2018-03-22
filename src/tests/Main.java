@@ -1,4 +1,4 @@
-package com.java.lesson.restaurant.reservation;
+package tests;
 
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
@@ -54,10 +54,10 @@ public class Main {
 //        us.insert(user2);
 
         /*Вывод списка user*/
-//        System.out.println(us.getAll());
+        System.out.println(us.getAll());
 
         /*ЗАкрытие*/
-//        us.close();
+        us.close();
 
 
         /**Restaurant*/
@@ -99,10 +99,10 @@ public class Main {
 //        rest.update(restaurant2);
 
         /*Вывод списка*/
-//        System.out.println(rest.getAll());
+        System.out.println(rest.getAll());
 
         /*ЗАкрытие*/
-//        rest.close();
+        rest.close();
 
 
 
@@ -133,10 +133,10 @@ public class Main {
 //        adv.update(advertisement2);
 
         /*Вывод списка*/
-//        System.out.println(adv.getAll());
+        System.out.println(adv.getAll());
 
         /*Закрытие*/
-//        adv.close();
+        adv.close();
 
 
         /**Orders*/
