@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<jsp:useBean id="error" scope="page" class="com.java.lesson.restaurant.reservation.controller.MyServlet"></jsp:useBean>--%>
+<%--<jsp:useBean id="error" scope="page" class="com.java.lesson.restaurant.reservation.controller.RestaurantReservationtReservation"></jsp:useBean>--%>
 
 <html>
 <head>

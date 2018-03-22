@@ -1,6 +1,6 @@
 package com.java.lesson.restaurant.reservation.controller;
 
-import com.java.lesson.restaurant.reservation.Attributes;
+import com.java.lesson.restaurant.reservation.attributes.Attributes;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
@@ -18,14 +18,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.java.lesson.restaurant.reservation.Attributes.*;
+import static com.java.lesson.restaurant.reservation.attributes.Attributes.*;
 
 /**
  * Created by User on 02.03.2018.
  */
 
-@WebServlet(name = "MyServlet", urlPatterns = "/users")
-public class MyServlet extends HttpServlet {
+@WebServlet(name = "RestaurantReservation", urlPatterns = "/users")
+public class RestaurantReservation extends HttpServlet {
 
     public static Attributes attributes = new Attributes();
 
