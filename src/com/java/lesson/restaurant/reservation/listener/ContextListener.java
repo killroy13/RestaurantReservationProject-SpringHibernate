@@ -7,9 +7,9 @@ import javax.servlet.ServletContextListener;
  * Created by UserDto on 09.03.2018.
  * @author Igor Iv.
  */
-public class MyServletContextListener implements ServletContextListener {
-    public MyServletContextListener() {
-        System.out.println(">> MyServletContextListener - NEW");
+public class ContextListener implements ServletContextListener {
+    public ContextListener() {
+        System.out.println(">> ContextListener - NEW");
     }
 
     @Override

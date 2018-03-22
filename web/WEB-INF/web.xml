@@ -75,7 +75,7 @@
         <listener-class>com.java.lesson.restaurant.reservation.listener.SessionActivationListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyServletContextListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.ContextListener</listener-class>
     </listener>
     <listener>
         <listener-class>com.java.lesson.restaurant.reservation.listener.SessionAttributeListener</listener-class>
@@ -89,13 +89,13 @@
     </listener>
 
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyServletContextAttributeListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.ContextAttributeListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyServletRequestAttributeListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.RequestAttributeListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyServletRequestListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.RequestListener</listener-class>
     </listener>
 
     <!--ERROR-->

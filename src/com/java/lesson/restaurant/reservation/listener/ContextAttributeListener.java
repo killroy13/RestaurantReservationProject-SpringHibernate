@@ -7,22 +7,22 @@ import javax.servlet.ServletContextAttributeListener;
  * Created by UserDto on 09.03.2018.
  * @author Igor Iv.
  */
-public class MyServletContextAttributeListener implements ServletContextAttributeListener {
-    public MyServletContextAttributeListener(){
-        System.out.println(">> MyServletContextAttributeListener - NEW");
+public class ContextAttributeListener implements ServletContextAttributeListener {
+    public ContextAttributeListener(){
+        System.out.println(">> ContextAttributeListener - NEW");
     }
     @Override
     public void attributeAdded(ServletContextAttributeEvent servletContextAttributeEvent) {
-        System.out.println(">> MyServletContextAttributeListener - attributeAdded");
+        System.out.println(">> ContextAttributeListener - attributeAdded");
     }
 
     @Override
     public void attributeRemoved(ServletContextAttributeEvent servletContextAttributeEvent) {
-        System.out.println(">> MyServletContextAttributeListener - attributeRemoved");
+        System.out.println(">> ContextAttributeListener - attributeRemoved");
     }
 
     @Override
     public void attributeReplaced(ServletContextAttributeEvent servletContextAttributeEvent) {
-        System.out.println(">> MyServletContextAttributeListener - attributeReplaced");
+        System.out.println(">> ContextAttributeListener - attributeReplaced");
     }
 }

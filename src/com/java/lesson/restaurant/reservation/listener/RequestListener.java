@@ -7,9 +7,9 @@ import javax.servlet.ServletRequestListener;
  * Created by UserDto on 09.03.2018.
  * @author Igor Iv.
  */
-public class MyServletRequestListener implements ServletRequestListener {
-    public MyServletRequestListener() {
-        System.out.println(">> MyServletRequestListener - NEW");
+public class RequestListener implements ServletRequestListener {
+    public RequestListener() {
+        System.out.println(">> RequestListener - NEW");
     }
 
     @Override
