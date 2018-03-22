@@ -7,10 +7,10 @@ import javax.servlet.ServletRequestAttributeListener;
  * Created by UserDto on 09.03.2018.
  * @author Igor Iv.
  */
-public class MyServletRequestAttributeListener implements ServletRequestAttributeListener{
+public class RequestAttributeListener implements ServletRequestAttributeListener{
 
-    public MyServletRequestAttributeListener(){
-        System.out.println(">> MyServletRequestAttributeListener - NEW");
+    public RequestAttributeListener(){
+        System.out.println(">> RequestAttributeListener - NEW");
     }
 
     @Override
