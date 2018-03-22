@@ -1,6 +1,6 @@
 package com.java.lesson.restaurant.reservation.controller;
 
-import com.java.lesson.restaurant.reservation.attributes.ReservationAttributes;
+import com.java.lesson.restaurant.reservation.attributes.RestaurantReservationAttributes;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
@@ -18,16 +18,17 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.java.lesson.restaurant.reservation.attributes.ReservationAttributes.*;
+import static com.java.lesson.restaurant.reservation.attributes.RestaurantReservationAttributes.*;
 
 /**
  * Created by UserDto on 02.03.2018.
+ * @author Igor Iv
  */
 
 @WebServlet(name = "RestaurantReservationServlet", urlPatterns = "/users")
 public class RestaurantReservationServlet extends HttpServlet {
 
-    public static ReservationAttributes attributes = new ReservationAttributes();
+    public static RestaurantReservationAttributes attributes = new RestaurantReservationAttributes();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);

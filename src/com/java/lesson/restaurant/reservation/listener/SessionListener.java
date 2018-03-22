@@ -12,10 +12,11 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import static com.java.lesson.restaurant.reservation.attributes.ReservationAttributes.*;
+import static com.java.lesson.restaurant.reservation.attributes.RestaurantReservationAttributes.*;
 
 /**
  * Created by UserDto on 09.03.2018.
+ * @author Igor Iv
  */
 public class SessionListener implements HttpSessionListener {
 

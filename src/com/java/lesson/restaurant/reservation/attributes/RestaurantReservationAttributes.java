@@ -7,9 +7,9 @@ import java.util.regex.Pattern;
  * Created by UserDto on 11.03.2018.
  *@author Ivanenko Igor
  */
-public class ReservationAttributes {
+public class RestaurantReservationAttributes {
 
-    public ReservationAttributes() {
+    public RestaurantReservationAttributes() {
     }
 
     /**
