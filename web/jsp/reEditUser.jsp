@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<%--<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="request"/>--%>
+<%--<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.UserDtoDto" scope="request"/>--%>
 
 <form action="/myServlet" method="post">
   <p> id: <label><input type="text" name="id"

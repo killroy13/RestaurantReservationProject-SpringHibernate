@@ -1,8 +1,8 @@
-<%@ page import="com.java.lesson.restaurant.reservation.dto.User" %>
+<%@ page import="com.java.lesson.restaurant.reservation.dto.UserDto" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
-  User: User
+  UserDto: UserDto
   Date: 19.03.2018
   Time: 21:29
   To change this template use File | Settings | File Templates.
@@ -21,7 +21,7 @@
     <p>USERS DATA</p>
 </div>
 <%
-    List<User> users = (List<User>) request.getAttribute("users");
+    List<UserDto> users = (List<UserDto>) request.getAttribute("users");
 %>
 <table border="1" align="center"  style="border: solid 1px black; align-content: center; " bgcolor="#EBF1F4">
     <tr>
@@ -35,7 +35,7 @@
         <th>Phone number</th>
     </tr>
     <%
-        for (User user: users) {
+        for (UserDto user: users) {
     %>
     <tr>
         <td><%=user.getId()%></td>

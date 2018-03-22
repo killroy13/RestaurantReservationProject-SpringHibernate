@@ -4,7 +4,7 @@ import com.java.lesson.restaurant.reservation.dao.AbstractMySQLDao;
 import com.java.lesson.restaurant.reservation.dao.RestaurantsDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
-import com.java.lesson.restaurant.reservation.dto.Restaurant;
+import com.java.lesson.restaurant.reservation.dto.RestaurantDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by User on 20.03.2018.
+ * Created by UserDto on 20.03.2018.
  */
-public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements RestaurantsDao {
+public class RestaurantsDaoImpl extends AbstractMySQLDao<RestaurantDto> implements RestaurantsDao {
 
     public RestaurantsDaoImpl() throws DaoException {
     }
@@ -63,11 +63,11 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
     }
 
     @Override
-    protected List<Restaurant> parseResultSet(ResultSet rs) throws DaoException {
-        LinkedList<Restaurant> result = new LinkedList<>();
+    protected List<RestaurantDto> parseResultSet(ResultSet rs) throws DaoException {
+        LinkedList<RestaurantDto> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                Restaurant restaurant = new Restaurant();
+                RestaurantDto restaurant = new RestaurantDto();
                 restaurant.setId(rs.getInt(1));
                 restaurant.setName(rs.getString(2));
                 restaurant.setCity(rs.getString(3));
@@ -91,7 +91,7 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
     }
 
     @Override
-    protected void preparedStatementForInsert(PreparedStatement ps, Restaurant restaurant) throws SQLException {
+    protected void preparedStatementForInsert(PreparedStatement ps, RestaurantDto restaurant) throws SQLException {
         ps.setString(1, restaurant.getName());
         ps.setString(2, restaurant.getCity());
         ps.setString(3, restaurant.getDistrict());
@@ -103,7 +103,7 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
     }
 
     @Override
-    protected void preparedStatementForUpdate(PreparedStatement ps, Restaurant restaurant) throws SQLException {
+    protected void preparedStatementForUpdate(PreparedStatement ps, RestaurantDto restaurant) throws SQLException {
         ps.setInt(1, restaurant.getId());
         ps.setString(2, restaurant.getName());
         ps.setString(3, restaurant.getCity());
@@ -124,8 +124,8 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
     }
 
     @Override
-    public List<Restaurant> getAll() throws DaoException {
-        List<Restaurant> result;
+    public List<RestaurantDto> getAll() throws DaoException {
+        List<RestaurantDto> result;
         try {
             PreparedStatement preparedStatement = getPreparedStatement(selectQuery());
             try (ResultSet rs = preparedStatement.executeQuery()) {
@@ -138,14 +138,14 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
     }
 
     @Override
-    public Restaurant getById(int id) throws DaoException {
-        Restaurant restaurant = null;
+    public RestaurantDto getById(int id) throws DaoException {
+        RestaurantDto restaurant = null;
         try {
             PreparedStatement preparedStatement = getPreparedStatement(selectByIdQuery());
             preparedStatementForSelectById(preparedStatement, id);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    restaurant = new Restaurant();
+                    restaurant = new RestaurantDto();
                     restaurant.setId(rs.getInt(1));
                     restaurant.setName(rs.getString(2));
                     restaurant.setCity(rs.getString(3));
@@ -161,14 +161,14 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
             throw new DaoException("Error in getById method", e);
         }
         if (restaurant == null) {
-            throw new NoSuchEntityException("No Restaurant for id = '" + id + "' ");
+            throw new NoSuchEntityException("No RestaurantDto for id = '" + id + "' ");
         } else {
             return restaurant;
         }
     }
 
     @Override
-    public void insert(Restaurant restaurant) throws DaoException {
+    public void insert(RestaurantDto restaurant) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(insertQuery());
             preparedStatementForInsert(ps, restaurant);
@@ -179,7 +179,7 @@ public class RestaurantsDaoImpl extends AbstractMySQLDao<Restaurant> implements 
     }
 
     @Override
-    public void update(Restaurant restaurant) throws DaoException {
+    public void update(RestaurantDto restaurant) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(updateQuery());
             preparedStatementForUpdate(ps, restaurant);

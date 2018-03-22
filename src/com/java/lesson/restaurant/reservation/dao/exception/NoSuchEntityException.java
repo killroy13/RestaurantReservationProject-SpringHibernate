@@ -1,7 +1,8 @@
 package com.java.lesson.restaurant.reservation.dao.exception;
 
 /**
- * Created by User on 09.03.2018.
+ * Created by UserDto on 09.03.2018.
+ * @author Igor Iv.
  */
 public class NoSuchEntityException extends DaoBusinessException {
     public NoSuchEntityException(String message) {

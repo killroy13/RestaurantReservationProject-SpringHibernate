@@ -1,13 +1,13 @@
 package com.java.lesson.restaurant.reservation.controller;
 
-import com.java.lesson.restaurant.reservation.attributes.Attributes;
+import com.java.lesson.restaurant.reservation.attributes.ReservationAttributes;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl;
-import com.java.lesson.restaurant.reservation.dto.Advertisement;
-import com.java.lesson.restaurant.reservation.dto.Restaurant;
-import com.java.lesson.restaurant.reservation.dto.User;
+import com.java.lesson.restaurant.reservation.dto.AdvertisementDto;
+import com.java.lesson.restaurant.reservation.dto.RestaurantDto;
+import com.java.lesson.restaurant.reservation.dto.UserDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,16 +18,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.java.lesson.restaurant.reservation.attributes.Attributes.*;
+import static com.java.lesson.restaurant.reservation.attributes.ReservationAttributes.*;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
  */
 
-@WebServlet(name = "RestaurantReservation", urlPatterns = "/users")
-public class RestaurantReservation extends HttpServlet {
+@WebServlet(name = "RestaurantReservationServlet", urlPatterns = "/users")
+public class RestaurantReservationServlet extends HttpServlet {
 
-    public static Attributes attributes = new Attributes();
+    public static ReservationAttributes attributes = new ReservationAttributes();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -119,7 +119,7 @@ public class RestaurantReservation extends HttpServlet {
             String idStr = request.getParameter(ADVERTISEMENT_ID);
             if (attributes.validId(idStr).isEmpty()){
                 Integer id = Integer.valueOf(idStr);
-                Advertisement advertisement = advertisementsDao.getById(id);
+                AdvertisementDto advertisement = advertisementsDao.getById(id);
                 request.setAttribute(ADVERTISEMENT_MODEL_TO_VIEW, advertisement);
                 link = ADVERTISEMENT_PAGE;
             }else {
@@ -139,7 +139,7 @@ public class RestaurantReservation extends HttpServlet {
         String link;
         try {
             AdvertisementsDaoImpl advertisementsDao = (AdvertisementsDaoImpl) session.getAttribute(ADVERTISEMENTS_DAO);
-            Advertisement advertisement = (Advertisement) session.getAttribute(ADVERTISEMENT_DTO);
+            AdvertisementDto advertisement = (AdvertisementDto) session.getAttribute(ADVERTISEMENT_DTO);
             String offerText = request.getParameter(ADVERTISEMENT_TEXT);
             String restaurantId = request.getParameter(ADVERTISEMENT_OF_RESTAURANT_ID);
             HashMap<String, String> dataErrorMap = attributes.vaidateInsertAdvertisement(offerText, restaurantId);
@@ -222,7 +222,7 @@ public class RestaurantReservation extends HttpServlet {
             String idStr = request.getParameter(RESTAURANT_ID);
             if (attributes.validId(idStr).isEmpty()) {
                 Integer id = Integer.valueOf(idStr);
-                Restaurant restaurant = restaurantsDao.getById(id);
+                RestaurantDto restaurant = restaurantsDao.getById(id);
                 request.setAttribute(RESTAURANT_MODEL_TO_VIEW, restaurant);
                 link = RESTAURANT_PAGE;
             } else {
@@ -243,7 +243,7 @@ public class RestaurantReservation extends HttpServlet {
         String link;
         try {
             RestaurantsDaoImpl restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
-            Restaurant restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+            RestaurantDto restaurant = (RestaurantDto) session.getAttribute(RESTAURANT_DTO);
             String id = request.getParameter(RESTAURANT_ID);
             String name = request.getParameter(RESTAURANT_NAME);
             String city = request.getParameter(RESTAURANT_CITY);
@@ -320,7 +320,7 @@ public class RestaurantReservation extends HttpServlet {
         String link;
         try {
             RestaurantsDaoImpl restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
-            Restaurant restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+            RestaurantDto restaurant = (RestaurantDto) session.getAttribute(RESTAURANT_DTO);
             String name = request.getParameter(RESTAURANT_NAME);
             String city = request.getParameter(RESTAURANT_CITY);
             String district = request.getParameter(RESTAURANT_DISTRICT);
@@ -434,7 +434,7 @@ public class RestaurantReservation extends HttpServlet {
             String idStr = request.getParameter(ID);
             if (attributes.validId(idStr).isEmpty()) {
                 Integer id = Integer.valueOf(idStr);
-                User user = usersDao.getById(id);
+                UserDto user = usersDao.getById(id);
                 request.setAttribute(USER_MODEL_TO_VIEW, user);
                 link = USER_PAGE;
             } else {
@@ -455,7 +455,7 @@ public class RestaurantReservation extends HttpServlet {
         String link;
         try {
             UsersDaoImpl usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-            User user = (User) session.getAttribute(USER_DTO);
+            UserDto user = (UserDto) session.getAttribute(USER_DTO);
 
             String id = request.getParameter(ID);
             String fName = request.getParameter(FIRST_NAME);
@@ -525,7 +525,7 @@ public class RestaurantReservation extends HttpServlet {
         String link;
         try {
             UsersDaoImpl usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-            User user = (User) session.getAttribute(USER_DTO);
+            UserDto user = (UserDto) session.getAttribute(USER_DTO);
 
             String fName = request.getParameter(FIRST_NAME);
             String sName = request.getParameter(SECOND_NAME);
@@ -640,7 +640,7 @@ public class RestaurantReservation extends HttpServlet {
                 System.out.println(">>>> IN IF");
 //кидает ошибку!!!!!!
                 UsersDaoImpl usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-                User user = usersDao.getByLoginAndPassword(login, password);
+                UserDto user = usersDao.getByLoginAndPassword(login, password);
                 System.out.println(">>>> IN TRY");
 
                 session.setAttribute("name", user.getfName());

@@ -4,11 +4,12 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
 /**
- * Created by User on 09.03.2018.
+ * Created by UserDto on 09.03.2018.
+ * @author Igor Iv.
  */
-public class MyHttpSessionAttributeListener implements HttpSessionAttributeListener {
-    public MyHttpSessionAttributeListener(){
-        System.out.println(">> MyHttpSessionAttributeListener - NEW");
+public class SessionAttributeListener implements HttpSessionAttributeListener {
+    public SessionAttributeListener(){
+        System.out.println(">> SessionAttributeListener - NEW");
     }
 
     @Override

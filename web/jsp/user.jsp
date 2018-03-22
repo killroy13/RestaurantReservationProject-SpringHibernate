@@ -17,7 +17,7 @@
 <div style="align-content: center"  >
     <p>USER INFO</p>
 </div>
-<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="request"/>
+<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.UserDto" scope="request"/>
 
 #:  ${user.id} <br/>
 <%--EL - Expression Language--%>

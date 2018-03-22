@@ -4,34 +4,34 @@ import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl;
-import com.java.lesson.restaurant.reservation.dto.Advertisement;
-import com.java.lesson.restaurant.reservation.dto.Restaurant;
-import com.java.lesson.restaurant.reservation.dto.User;
+import com.java.lesson.restaurant.reservation.dto.AdvertisementDto;
+import com.java.lesson.restaurant.reservation.dto.RestaurantDto;
+import com.java.lesson.restaurant.reservation.dto.UserDto;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import static com.java.lesson.restaurant.reservation.attributes.Attributes.*;
+import static com.java.lesson.restaurant.reservation.attributes.ReservationAttributes.*;
 
 /**
- * Created by User on 09.03.2018.
+ * Created by UserDto on 09.03.2018.
  */
-public class MyHttpSessionListener implements HttpSessionListener {
+public class SessionListener implements HttpSessionListener {
 
     private HttpSession session;
 
     private UsersDaoImpl usersDao;
-    private User user;
+    private UserDto user;
 
     private RestaurantsDaoImpl restaurantsDao;
-    private Restaurant restaurant;
+    private RestaurantDto restaurant;
 
     private AdvertisementsDaoImpl advertisementsDao;
-    private Advertisement advertisement;
+    private AdvertisementDto advertisement;
 
-    public MyHttpSessionListener() {
-        System.out.println(">> MyHttpSessionListener - NEW");
+    public SessionListener() {
+        System.out.println(">> SessionListener - NEW");
     }
 
     @Override
@@ -43,13 +43,13 @@ public class MyHttpSessionListener implements HttpSessionListener {
             session = httpSessionEvent.getSession();
 
             usersDao = new UsersDaoImpl();
-            user = new User();
+            user = new UserDto();
 
             restaurantsDao = new RestaurantsDaoImpl();
-            restaurant = new Restaurant();
+            restaurant = new RestaurantDto();
 
             advertisementsDao = new AdvertisementsDaoImpl();
-            advertisement = new Advertisement();
+            advertisement = new AdvertisementDto();
 
             session.setAttribute(USERS_DAO, usersDao);
             session.setAttribute(USER_DTO, user);
@@ -70,13 +70,13 @@ public class MyHttpSessionListener implements HttpSessionListener {
         System.out.println(">> Session - destroyed");
 
         usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-        user = (User) session.getAttribute(USER_DTO);
+        user = (UserDto) session.getAttribute(USER_DTO);
 
         restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
-        restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+        restaurant = (RestaurantDto) session.getAttribute(RESTAURANT_DTO);
 
         advertisementsDao = (AdvertisementsDaoImpl) session.getAttribute(ADVERTISEMENTS_DAO);
-        advertisement = (Advertisement) session.getAttribute(ADVERTISEMENT_DTO);
+        advertisement = (AdvertisementDto) session.getAttribute(ADVERTISEMENT_DTO);
 
         try {
             if (usersDao != null) {

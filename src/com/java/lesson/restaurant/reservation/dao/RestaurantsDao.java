@@ -1,16 +1,17 @@
 package com.java.lesson.restaurant.reservation.dao;
 
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
-import com.java.lesson.restaurant.reservation.dto.Restaurant;
+import com.java.lesson.restaurant.reservation.dto.RestaurantDto;
 
 import java.util.List;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
-public interface RestaurantsDao extends GenericDao<Restaurant> {
+public interface RestaurantsDao extends GenericDao<RestaurantDto> {
 
-    List<Restaurant> getAll() throws DaoException;
+    List<RestaurantDto> getAll() throws DaoException;
 
-    Restaurant getById(int id) throws DaoException;
+    RestaurantDto getById(int id) throws DaoException;
 }

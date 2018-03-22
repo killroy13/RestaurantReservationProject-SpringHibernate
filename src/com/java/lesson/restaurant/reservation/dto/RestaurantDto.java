@@ -1,9 +1,10 @@
 package com.java.lesson.restaurant.reservation.dto;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
-public class Restaurant extends Model{
+public class RestaurantDto extends ModelDto {
     String name;
     String city;
     String district;

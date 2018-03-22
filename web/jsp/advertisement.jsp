@@ -16,7 +16,7 @@
 <div style="align-content: center"  >
   <p>ADVERTISEMENT INFO</p>
 </div>
-<jsp:useBean id="advertisement" class="com.java.lesson.restaurant.reservation.dto.Advertisement" scope="request"/>
+<jsp:useBean id="advertisement" class="com.java.lesson.restaurant.reservation.dto.AdvertisementDto" scope="request"/>
 
 #:  ${advertisement.id} <br/>
 Restaurants Offer: <%=advertisement.getOfferText()%><br/>

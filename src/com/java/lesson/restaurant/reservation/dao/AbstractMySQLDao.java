@@ -1,6 +1,6 @@
 package com.java.lesson.restaurant.reservation.dao;
 
-import tests.Main;
+import tests.MainTest;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 
 import java.io.IOException;
@@ -9,7 +9,8 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
 public abstract class AbstractMySQLDao<T> {
 
@@ -48,7 +49,7 @@ public abstract class AbstractMySQLDao<T> {
 
     public Connection getConnection() throws DaoException {
         Properties property = new Properties();
-        try (InputStream in = Main.class.getResourceAsStream("config.properties")) {
+        try (InputStream in = MainTest.class.getResourceAsStream("config.properties")) {
             property.load(in);
             String URL = property.getProperty("URL");
             String USER = property.getProperty("USER");

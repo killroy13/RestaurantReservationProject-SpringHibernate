@@ -4,7 +4,7 @@ import com.java.lesson.restaurant.reservation.dao.AbstractMySQLDao;
 import com.java.lesson.restaurant.reservation.dao.AdvertisementsDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
-import com.java.lesson.restaurant.reservation.dto.Advertisement;
+import com.java.lesson.restaurant.reservation.dto.AdvertisementDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by User on 21.03.2018.
+ * Created by UserDto on 21.03.2018.
  */
-public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> implements AdvertisementsDao {
+public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> implements AdvertisementsDao {
     public AdvertisementsDaoImpl() throws DaoException {
     }
 
@@ -46,11 +46,11 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
     }
 
     @Override
-    protected List<Advertisement> parseResultSet(ResultSet rs) throws DaoException {
-        LinkedList<Advertisement> result = new LinkedList<>();
+    protected List<AdvertisementDto> parseResultSet(ResultSet rs) throws DaoException {
+        LinkedList<AdvertisementDto> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                Advertisement advertisement = new Advertisement();
+                AdvertisementDto advertisement = new AdvertisementDto();
                 advertisement.setId(rs.getInt(1));
                 advertisement.setOfferText(rs.getString(2));
                 advertisement.setRestaurantId(rs.getInt(3));
@@ -68,13 +68,13 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
     }
 
     @Override
-    protected void preparedStatementForInsert(PreparedStatement ps, Advertisement advertisement) throws SQLException {
+    protected void preparedStatementForInsert(PreparedStatement ps, AdvertisementDto advertisement) throws SQLException {
         ps.setString(1, advertisement.getOfferText());
         ps.setInt(2, advertisement.getRestaurantId());
     }
 
     @Override
-    protected void preparedStatementForUpdate(PreparedStatement ps, Advertisement advertisement) throws SQLException {
+    protected void preparedStatementForUpdate(PreparedStatement ps, AdvertisementDto advertisement) throws SQLException {
         ps.setInt(1, advertisement.getId());
         ps.setString(2, advertisement.getOfferText());
         ps.setInt(3, advertisement.getRestaurantId());
@@ -83,8 +83,8 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
     }
 
     @Override
-    public List<Advertisement> getAll() throws DaoException {
-        List<Advertisement> result;
+    public List<AdvertisementDto> getAll() throws DaoException {
+        List<AdvertisementDto> result;
         try {
             PreparedStatement ps = getPreparedStatement(selectQuery());
             try (ResultSet rs = ps.executeQuery()) {
@@ -97,14 +97,14 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
     }
 
     @Override
-    public Advertisement getById(int id) throws DaoException {
-        Advertisement advertisement = null;
+    public AdvertisementDto getById(int id) throws DaoException {
+        AdvertisementDto advertisement = null;
         try {
             PreparedStatement ps = getPreparedStatement(selectByIdQuery());
             preparedStatementForSelectById(ps, id);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    advertisement = new Advertisement();
+                    advertisement = new AdvertisementDto();
                     advertisement.setId(rs.getInt(1));
                     advertisement.setOfferText(rs.getString(2));
                     advertisement.setRestaurantId(rs.getInt(3));
@@ -114,14 +114,14 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
             throw new DaoException("Error in getById method", e);
         }
         if (advertisement == null) {
-            throw new NoSuchEntityException("No Restaurant for id = '" + id + "' ");
+            throw new NoSuchEntityException("No RestaurantDto for id = '" + id + "' ");
         } else {
             return advertisement;
         }
     }
 
     @Override
-    public void insert(Advertisement advertisement) throws DaoException {
+    public void insert(AdvertisementDto advertisement) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(insertQuery());
             preparedStatementForInsert(ps, advertisement);
@@ -132,7 +132,7 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
     }
 
     @Override
-    public void update(Advertisement advertisement) throws DaoException {
+    public void update(AdvertisementDto advertisement) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(updateQuery());
             preparedStatementForUpdate(ps, advertisement);

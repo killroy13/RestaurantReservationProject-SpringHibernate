@@ -2,7 +2,7 @@
 <%@ page import="java.sql.Connection" %>
 <%--
   Created by IntelliJ IDEA.
-  User: User
+  UserDto: UserDto
   Date: 08.02.2018
   Time: 21:41
   To change this template use File | Settings | File Templates.

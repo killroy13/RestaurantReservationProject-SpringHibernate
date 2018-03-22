@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 /**
- * Created by User on 11.03.2018.
+ * Created by UserDto on 11.03.2018.
+ *@author Ivanenko Igor
  */
-public class Attributes {
+public class ReservationAttributes {
 
-    public Attributes() {
+    public ReservationAttributes() {
     }
 
     /**
@@ -56,7 +57,7 @@ public class Attributes {
     /*JSP RESTAURANT PAGES*/
     public static final String SHOW_ALL_RESTAURANTS_PAGE = "/jsp/showRestaurants.jsp";
     public static final String RESTAURANT_PAGE = "jsp/restaurant.jsp";
-    public static final String EDIT_RESTAURANT_PAGE = "jsp/editRestaurant.jsp";
+//    public static final String EDIT_RESTAURANT_PAGE = "jsp/editRestaurant.jsp";
     public static final String RE_EDIT_RESTAURANT_PAGE = "jsp/reEditRestaurant.jsp";
     public static final String SUCCESS_EDIT_RESTAURANT_PAGE = "jsp/successEditRestaurant.jsp";
     public static final String RE_ADD_RESTAURANT_PAGE = "jsp/reAddRestaurant.jsp";
@@ -87,7 +88,7 @@ public class Attributes {
     public static final String LOGIN_SUCCESS_PAGE = "/jsp/form/successLogin.jsp";
     public static final String RE_LOGIN_PAGE = "/jsp/form/reLogin.jsp";
     public static final String USER_PAGE = "jsp/user.jsp";
-    public static final String EDIT_USER_PAGE = "jsp/editUser.jsp";
+//    public static final String EDIT_USER_PAGE = "jsp/editUser.jsp";
     public static final String RE_EDIT_USER_PAGE = "jsp/reEditUser.jsp";
     public static final String SUCCESS_EDIT_USER_PAGE = "jsp/successEditUser.jsp";
     public static final String RE_REGISTRATION_PAGE = "jsp/reRegistration.jsp";
