@@ -1,10 +1,10 @@
-<%@ page import="com.java.lesson.restaurant.reservation.dto.Restaurant" %>
+<%@ page import="com.java.lesson.restaurant.reservation.dto.RestaurantDto" %>
 <%@ page import="java.util.List" %>
-<%--<%@ page import="com.java.lesson.restaurant.reservation.dto.Restaurant" %>--%>
+<%--<%@ page import="com.java.lesson.restaurant.reservation.dto.RestaurantDtoDto" %>--%>
 <%--<%@ page import="java.util.List" %>--%>
 <%--
   Created by IntelliJ IDEA.
-  User: User
+  UserDto: UserDto
   Date: 20.03.2018
   Time: 21:55
   To change this template use File | Settings | File Templates.
@@ -21,7 +21,7 @@
   <p>RESTAURANTS DATA</p>
 </div>
 <%
-  List<Restaurant> restaurants = (List<Restaurant>) request.getAttribute("restaurants");
+  List<RestaurantDto> restaurants = (List<RestaurantDto>) request.getAttribute("restaurants");
 %>
 <table border="1" align="center"  style="border: solid 1px black; align-content: center; " bgcolor="#EBF1F4">
   <tr>
@@ -36,7 +36,7 @@
     <th>Photo</th>
   </tr>
   <%
-    for (Restaurant restaurant: restaurants) {
+    for (RestaurantDto restaurant: restaurants) {
   %>
   <tr>
     <td><%=restaurant.getId()%></td>

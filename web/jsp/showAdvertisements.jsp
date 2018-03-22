@@ -1,8 +1,8 @@
-<%@ page import="com.java.lesson.restaurant.reservation.dto.Advertisement" %>
+<%@ page import="com.java.lesson.restaurant.reservation.dto.AdvertisementDto" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
-  User: User
+  UserDto: UserDto
   Date: 21.03.2018
   Time: 13:41
   To change this template use File | Settings | File Templates.
@@ -19,7 +19,7 @@
   <p>ADVERTISEMENTS DATA</p>
 </div>
 <%
-  List<Advertisement> advertisements = (List<Advertisement>) request.getAttribute("advertisements");
+  List<AdvertisementDto> advertisements = (List<AdvertisementDto>) request.getAttribute("advertisements");
 %>
 <table border="1" align="center"  style="border: solid 1px black; align-content: center; " bgcolor="#EBF1F4">
   <tr>
@@ -28,7 +28,7 @@
     <th>Restaurant (id)</th>
   </tr>
   <%
-    for (Advertisement advertisement: advertisements) {
+    for (AdvertisementDto advertisement: advertisements) {
   %>
   <tr>
     <td><%=advertisement.getId()%></td>

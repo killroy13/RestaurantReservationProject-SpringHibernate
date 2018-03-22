@@ -1,9 +1,10 @@
 package com.java.lesson.restaurant.reservation.dto;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
-public class User extends Model{
+public class UserDto extends ModelDto {
     String fName;
     String sName;
     String birthDate;
@@ -12,9 +13,9 @@ public class User extends Model{
     String eMail;
     String phone;
 
-    public User(){}
+    public UserDto(){}
 
-    public User(int id,String f_name, String s_name, String birth_day, String login, String password, String e_mail, String phone){
+    public UserDto(int id, String f_name, String s_name, String birth_day, String login, String password, String e_mail, String phone){
         this.id = id;
         this.fName = f_name;
         this.sName = s_name;

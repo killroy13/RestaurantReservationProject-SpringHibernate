@@ -4,7 +4,8 @@ import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
 
 /**
- * Created by User on 09.03.2018.
+ * Created by UserDto on 09.03.2018.
+ * @author Igor Iv.
  */
 public class MyServletContextAttributeListener implements ServletContextAttributeListener {
     public MyServletContextAttributeListener(){

@@ -13,7 +13,7 @@
     <title></title>
 </head>
 <body>
-<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="request"/>
+<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.UserDto" scope="request"/>
 <h1>Hello! <%=session.getAttribute("name")%>  <%=session.getAttribute("sName")%>
 </h1>
 
@@ -23,8 +23,8 @@ password = <%=session.getAttribute("sName")%><br/>
 session id = <%=session.getId()%><br>
 
 <%--Id:  ${user.id} <br/>--%>
-<%--User name: <%=request.getAttribute("name")%><br/>--%>
-<%--User last_name: <%=request.getAttribute("second")%><br/>--%>
+<%--UserDto name: <%=request.getAttribute("name")%><br/>--%>
+<%--UserDto last_name: <%=request.getAttribute("second")%><br/>--%>
 <%--login: ${user.login}<br/>--%>
 <%--password: ${user.password}<br/>--%>
 <%--e_mail: ${user.eMail}<br/>--%>

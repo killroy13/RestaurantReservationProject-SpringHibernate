@@ -4,18 +4,19 @@ import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl;
-import com.java.lesson.restaurant.reservation.dto.Advertisement;
-import com.java.lesson.restaurant.reservation.dto.Restaurant;
-import com.java.lesson.restaurant.reservation.dto.User;
+import com.java.lesson.restaurant.reservation.dto.AdvertisementDto;
+import com.java.lesson.restaurant.reservation.dto.RestaurantDto;
+import com.java.lesson.restaurant.reservation.dto.UserDto;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
-public class Main {
+public class MainTest {
     public static void main(String[] args) throws DaoException {
         UsersDaoImpl us = new UsersDaoImpl();
 
-        User user1 = new User();
+        UserDto user1 = new UserDto();
         user1.setId(3);
         user1.setfName("Daiv");
         user1.setsName("Peterson");
@@ -25,7 +26,7 @@ public class Main {
         user1.seteMail("mail");
         user1.setPhone("345345345");
 
-        User user2 = new User();
+        UserDto user2 = new UserDto();
         user2.setId(4);
         user2.setfName("testt");
         user2.setsName("fest");
@@ -42,7 +43,7 @@ public class Main {
 //        System.out.println(us.getById(20));
 
          /*Вывод по login*/
-//        System.out.println(us.getByLoginAndPassword("login", "password"));
+//        System.out.println(us.getByLoginAndPassword("login", "password"));ч
 
         /*Обновление*/
 //        us.update(user1);
@@ -60,11 +61,11 @@ public class Main {
         us.close();
 
 
-        /**Restaurant*/
+        /**RestaurantDto*/
 
         RestaurantsDaoImpl rest = new RestaurantsDaoImpl();
 
-        Restaurant restaurant1 = new Restaurant();
+        RestaurantDto restaurant1 = new RestaurantDto();
         restaurant1.setId(5);
         restaurant1.setName("Daiv");
         restaurant1.setCity("Minsk");
@@ -75,7 +76,7 @@ public class Main {
         restaurant1.setDescribe("345 re 345345. R");
         restaurant1.setPhoto("12");
 
-        Restaurant restaurant2 = new Restaurant();
+        RestaurantDto restaurant2 = new RestaurantDto();
         restaurant2.setId(6);
         restaurant2.setName("4ff");
         restaurant2.setCity("Minsk");
@@ -106,16 +107,16 @@ public class Main {
 
 
 
-        /**Advertisement*/
+        /**AdvertisementDto*/
 
         AdvertisementsDaoImpl adv = new AdvertisementsDaoImpl();
 
-        Advertisement advertisement1 = new Advertisement();
+        AdvertisementDto advertisement1 = new AdvertisementDto();
         advertisement1.setId(5);
         advertisement1.setOfferText("Daiv");
         advertisement1.setRestaurantId(5);
 
-        Advertisement advertisement2 = new Advertisement();
+        AdvertisementDto advertisement2 = new AdvertisementDto();
         advertisement2.setId(3);
         advertisement2.setOfferText("Minsk");
         advertisement2.setRestaurantId(6);
@@ -143,12 +144,12 @@ public class Main {
 
 //        AdvertisementsDaoImpl adv = new AdvertisementsDaoImpl();
 //
-//        Advertisement advertisement1 = new Advertisement();
+//        AdvertisementDto advertisement1 = new AdvertisementDto();
 //        advertisement1.setId(5);
 //        advertisement1.setOfferText("Daiv");
 //        advertisement1.setRestaurantId(5);
 //
-//        Advertisement advertisement2 = new Advertisement();
+//        AdvertisementDto advertisement2 = new AdvertisementDto();
 //        advertisement2.setId(3);
 //        advertisement2.setOfferText("Minsk");
 //        advertisement2.setRestaurantId(6);

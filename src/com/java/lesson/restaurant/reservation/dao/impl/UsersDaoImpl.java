@@ -4,7 +4,7 @@ import com.java.lesson.restaurant.reservation.dao.AbstractMySQLDao;
 import com.java.lesson.restaurant.reservation.dao.UsersDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
-import com.java.lesson.restaurant.reservation.dto.User;
+import com.java.lesson.restaurant.reservation.dto.UserDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by User on 03.03.2018.
+ * Created by UserDto on 03.03.2018.
  */
-public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
+public class UsersDaoImpl extends AbstractMySQLDao<UserDto> implements UsersDao {
 
     public UsersDaoImpl() throws DaoException {
     }
@@ -60,11 +60,11 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    protected List<User> parseResultSet(ResultSet rs) throws DaoException {
-        LinkedList<User> result = new LinkedList<>();
+    protected List<UserDto> parseResultSet(ResultSet rs) throws DaoException {
+        LinkedList<UserDto> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                User user = new User();
+                UserDto user = new UserDto();
                 user.setId(rs.getInt(1));
                 user.setfName(rs.getString(2));
                 user.setsName(rs.getString(3));
@@ -93,7 +93,7 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    protected void preparedStatementForInsert(PreparedStatement ps, User user) throws SQLException {
+    protected void preparedStatementForInsert(PreparedStatement ps, UserDto user) throws SQLException {
 //        ps.setInt(1, user.getId());
         ps.setString(1, user.getfName());
         ps.setString(2, user.getsName());
@@ -105,7 +105,7 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    protected void preparedStatementForUpdate(PreparedStatement ps, User user) throws SQLException {
+    protected void preparedStatementForUpdate(PreparedStatement ps, UserDto user) throws SQLException {
         ps.setInt(1, user.getId());
         ps.setString(2, user.getfName());
         ps.setString(3, user.getsName());
@@ -124,8 +124,8 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    public List<User> getAll() throws DaoException {
-        List<User> result;
+    public List<UserDto> getAll() throws DaoException {
+        List<UserDto> result;
         try {
             PreparedStatement preparedStatement = getPreparedStatement(selectQuery());
             try (ResultSet rs = preparedStatement.executeQuery()) {
@@ -138,14 +138,14 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    public User getById(int id) throws DaoException {
-        User user = null;
+    public UserDto getById(int id) throws DaoException {
+        UserDto user = null;
         try {
             PreparedStatement preparedStatement = getPreparedStatement(selectByIdQuery());
             preparedStatementForSelectById(preparedStatement, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    user = new User();
+                    user = new UserDto();
                     user.setId(resultSet.getInt(1));
                     user.setfName(resultSet.getString(2));
                     user.setsName(resultSet.getString(3));
@@ -168,8 +168,8 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
 
     //TODO логином может выступать email
     @Override
-    public User getByLoginAndPassword(String login, String password) throws DaoException, NoSuchEntityException {
-        User user = null;
+    public UserDto getByLoginAndPassword(String login, String password) throws DaoException, NoSuchEntityException {
+        UserDto user = null;
         try {
             PreparedStatement preparedStatement = getPreparedStatement(selectByLoginQueryAndPassword());
             preparedStatementForSelectByLoginAndPassword(preparedStatement, login, password);
@@ -177,7 +177,7 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
                 while (resultSet.next()) {
 //                    if (){
 
-                        user = new User();
+                        user = new UserDto();
                         user.setId(resultSet.getInt(1));
                         user.setfName(resultSet.getString(2));
                         user.setsName(resultSet.getString(3));
@@ -200,7 +200,7 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    public void insert(User user) throws DaoException {
+    public void insert(UserDto user) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(insertQuery());
             preparedStatementForInsert(ps, user);
@@ -211,7 +211,7 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     }
 
     @Override
-    public void update(User user) throws DaoException {
+    public void update(UserDto user) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(updateQuery());
             preparedStatementForUpdate(ps, user);

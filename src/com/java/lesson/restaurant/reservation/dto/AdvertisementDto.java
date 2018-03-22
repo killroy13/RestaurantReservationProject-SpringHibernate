@@ -1,9 +1,10 @@
 package com.java.lesson.restaurant.reservation.dto;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
-public class Advertisement extends Model{
+public class AdvertisementDto extends ModelDto {
     String offerText;
     int restaurantId;
 

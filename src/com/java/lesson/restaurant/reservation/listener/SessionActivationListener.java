@@ -4,11 +4,12 @@ import javax.servlet.http.HttpSessionActivationListener;
 import javax.servlet.http.HttpSessionEvent;
 
 /**
- * Created by User on 09.03.2018.
+ * Created by UserDto on 09.03.2018.
+ * @author Igor Iv.
  */
-public class MyHttpSessionActivationListener implements HttpSessionActivationListener {
-    public MyHttpSessionActivationListener(){
-        System.out.println(">> MyHttpSessionActivationListener - NEW");
+public class SessionActivationListener implements HttpSessionActivationListener {
+    public SessionActivationListener(){
+        System.out.println(">> SessionActivationListener - NEW");
     }
     @Override
     public void sessionWillPassivate(HttpSessionEvent httpSessionEvent) {

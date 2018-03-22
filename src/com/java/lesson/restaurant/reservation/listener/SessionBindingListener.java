@@ -4,11 +4,12 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
 /**
- * Created by User on 09.03.2018.
+ * Created by UserDto on 09.03.2018.
+ * @author Igor Iv.
  */
-public class MyHttpSessionBindingListener implements HttpSessionBindingListener {
-    public MyHttpSessionBindingListener(){
-        System.out.println(">> MyHttpSessionBindingListener - NEW");
+public class SessionBindingListener implements HttpSessionBindingListener {
+    public SessionBindingListener(){
+        System.out.println(">> SessionBindingListener - NEW");
     }
 
     @Override
@@ -18,6 +19,6 @@ public class MyHttpSessionBindingListener implements HttpSessionBindingListener 
 
     @Override
     public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
-        System.out.println(">> MyHttpSessionBindingListener - unbound - " + httpSessionBindingEvent.getValue());
+        System.out.println(">> SessionBindingListener - unbound - " + httpSessionBindingEvent.getValue());
     }
 }

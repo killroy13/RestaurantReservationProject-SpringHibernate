@@ -16,7 +16,7 @@
 <div style="align-content: center"  >
   <p>RESTAURANT INFO</p>
 </div>
-<jsp:useBean id="restaurant" class="com.java.lesson.restaurant.reservation.dto.Restaurant" scope="request"/>
+<jsp:useBean id="restaurant" class="com.java.lesson.restaurant.reservation.dto.RestaurantDto" scope="request"/>
 
 #:  ${restaurant.id} <br/>
 Name: <%=restaurant.getName()%><br/>

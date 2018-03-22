@@ -1,9 +1,10 @@
 package com.java.lesson.restaurant.reservation.dto;
 
 /**
- * Created by User on 02.03.2018.
+ * Created by UserDto on 02.03.2018.
+ * @author Igor Iv.
  */
-public class Review extends Model {
+public class ReviewDto extends ModelDto {
     String date;
     String text;
     int user;

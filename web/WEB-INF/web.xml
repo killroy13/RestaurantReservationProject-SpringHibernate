@@ -6,11 +6,11 @@
 
 
     <!--CONTROLLERS-->
-    <!--RestaurantReservation-->
+    <!--RestaurantReservationServlet-->
 
     <servlet>
         <servlet-name>myServlet</servlet-name>
-        <servlet-class>com.java.lesson.restaurant.reservation.controller.RestaurantReservation</servlet-class>
+        <servlet-class>com.java.lesson.restaurant.reservation.controller.RestaurantReservationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>myServlet</servlet-name>
@@ -72,20 +72,20 @@
 
     <!--LISTENERS-->
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyHttpSessionActivationListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.SessionActivationListener</listener-class>
     </listener>
     <listener>
         <listener-class>com.java.lesson.restaurant.reservation.listener.MyServletContextListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyHttpSessionAttributeListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.SessionAttributeListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyHttpSessionBindingListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.SessionBindingListener</listener-class>
     </listener>
 
     <listener>
-        <listener-class>com.java.lesson.restaurant.reservation.listener.MyHttpSessionListener</listener-class>
+        <listener-class>com.java.lesson.restaurant.reservation.listener.SessionListener</listener-class>
     </listener>
 
     <listener>
