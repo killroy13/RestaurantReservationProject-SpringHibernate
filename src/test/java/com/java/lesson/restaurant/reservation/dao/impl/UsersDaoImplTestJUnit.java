@@ -2,8 +2,10 @@ package com.java.lesson.restaurant.reservation.dao.impl;
 
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dto.UserDto;
-import org.dbunit.*;
-import org.dbunit.database.QueryDataSet;
+import org.dbunit.DBTestCase;
+import org.dbunit.IDatabaseTester;
+import org.dbunit.JdbcDatabaseTester;
+import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
@@ -22,9 +24,9 @@ import java.util.Properties;
  *
  * @author Igor Iv.
  */
-public class UsersDaoImplTest extends DBTestCase {
+public class UsersDaoImplTestJUnit extends DBTestCase {
 
-    public UsersDaoImplTest() throws DaoException {
+    public UsersDaoImplTestJUnit() throws DaoException {
         setProperties();
     }
 
@@ -52,26 +54,25 @@ public class UsersDaoImplTest extends DBTestCase {
                 System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL),
                 System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME),
                 System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD));
-        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+//        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.setSetUpOperation(DatabaseOperation.NONE);
         IDataSet exceptedDataSet = getDataSet();
         databaseTester.setDataSet(exceptedDataSet);
         databaseTester.onSetup();
-        System.out.println("Before");
+//        System.out.println("Before");
     }
 
     @After
     public void tearDown () throws Exception {
-        System.out.println("After");
+//        System.out.println("After");
     }
-
 
     @Test(expected = NullPointerException.class)
     public void testGetAll() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
         List<UserDto> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
-        System.out.println("test GetAll");
+//        System.out.println("test GetAll");
     }
 
     @Test
@@ -81,7 +82,7 @@ public class UsersDaoImplTest extends DBTestCase {
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Named", user.getfName());
         assertEquals("Second Name expected: ", "Sec", user.getsName());
-        System.out.println("test GetById");
+//        System.out.println("test GetById");
     }
 
     @Test
@@ -90,72 +91,72 @@ public class UsersDaoImplTest extends DBTestCase {
         UserDto user = usersDao.getByLoginAndPassword("oil", "li");
         assertEquals("FirstName expected: ", "Lara", user.getfName());
         assertEquals("SecondName expected: ", "Croft", user.getsName());
-        System.out.println("test GetByIdAndLogin");
+//        System.out.println("test GetByIdAndLogin");
     }
 
-    @Test
-    public void testInsert() throws Exception {
-        UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = new UserDto();
-        user.setfName("Sunny");
-        user.setsName("Bunny");
-        user.setBirthDate("1988-12-05");
-        user.setLogin("sun");
-        user.setPassword("bun");
-        user.seteMail("mail@s");
-        user.setPhone("345-22-752-55-55");
-        usersDao.insert(user);
-
-        // Compare data
-        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
-        dataSet.addTable("users");
-        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_add.xml"));
-        String[] ignore = {"users_id", "user_birth"};
-        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
-
-        System.out.println("test insert");
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
-        UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = new UserDto();
-        user.setId(21);
-        user.setfName("Sunny");
-        user.setsName("Bunny");
-        user.setBirthDate("1988-12-05");
-        user.setLogin("sun");
-        user.setPassword("bun");
-        user.seteMail("mail@s");
-        user.setPhone("345-22-752-55-55");
-        usersDao.update(user);
-
-        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
-        dataSet.addTable("users");
-        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_update.xml"));
-        String[] ignore = {"users_id", "user_birth"};
-        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
-
-        System.out.println("test update");
-    }
-
-    @Test
-    public void testDelete() throws Exception {
-        UsersDaoImpl usersDao = new UsersDaoImpl();
-        usersDao.delete(26);
-
-        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
-        dataSet.addTable("users");
-        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_delete.xml"));
-        String[] ignore = {"users_id", "user_birth"};
-        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
-
-        System.out.println("test Delete");
-    }
+//    @Test
+//    public void testInsert() throws Exception {
+//        UsersDaoImpl usersDao = new UsersDaoImpl();
+//        UserDto user = new UserDto();
+//        user.setfName("Sunny");
+//        user.setsName("Bunny");
+//        user.setBirthDate("1988-12-05");
+//        user.setLogin("sun");
+//        user.setPassword("bun");
+//        user.seteMail("mail@s");
+//        user.setPhone("345-22-752-55-55");
+//        usersDao.insert(user);
+//
+//        // Compare data
+//        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
+//        dataSet.addTable("users");
+//        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_add.xml"));
+//        String[] ignore = {"users_id", "user_birth"};
+//        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
+//
+//        System.out.println("test insert");
+//    }
+//
+//    @Test
+//    public void testUpdate() throws Exception {
+//        UsersDaoImpl usersDao = new UsersDaoImpl();
+//        UserDto user = new UserDto();
+//        user.setId(21);
+//        user.setfName("Sunny");
+//        user.setsName("Bunny");
+//        user.setBirthDate("1988-12-05");
+//        user.setLogin("sun");
+//        user.setPassword("bun");
+//        user.seteMail("mail@s");
+//        user.setPhone("345-22-752-55-55");
+//        usersDao.update(user);
+//
+//        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
+//        dataSet.addTable("users");
+//        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_update.xml"));
+//        String[] ignore = {"users_id", "user_birth"};
+//        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
+//
+//        System.out.println("test update");
+//    }
+//
+//    @Test
+//    public void testDelete() throws Exception {
+//        UsersDaoImpl usersDao = new UsersDaoImpl();
+//        usersDao.delete(26);
+//
+//        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
+//        dataSet.addTable("users");
+//        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_delete.xml"));
+//        String[] ignore = {"users_id", "user_birth"};
+//        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
+//
+//        System.out.println("test Delete");
+//    }
 }
 
 
-// Insert data from users db in .xml
+// //   Insert data from users db in .xml
 //        Class.forName("com.mysql.jdbc.Driver");
 //        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant_reservation_db?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "user1");
 //        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
