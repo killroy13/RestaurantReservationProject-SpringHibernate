@@ -163,3 +163,6 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //        QueryDataSet partialDataSet = new QueryDataSet(connection);
 //        partialDataSet.addTable("users");
 //        FlatXmlDataSet.write(partialDataSet, new FileOutputStream("src/test/resources/user_data_add.xml"));
+
+
+//test
