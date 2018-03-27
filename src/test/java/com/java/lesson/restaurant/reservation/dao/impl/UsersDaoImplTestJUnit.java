@@ -165,4 +165,3 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //        FlatXmlDataSet.write(partialDataSet, new FileOutputStream("src/test/resources/user_data_add.xml"));
 
 
-//test
