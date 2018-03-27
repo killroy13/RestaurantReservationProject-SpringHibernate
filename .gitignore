@@ -1,10 +1,11 @@
 ### Intellij ###
 
-.idea/*
-out/*
+.idea
+out
+target
 
 src/com/java/lesson/restaurant/reservation/notUse/*
-web/testJsp/*
+web/testJsp
 
 
 
@@ -12,6 +13,12 @@ web/testJsp/*
 
 *.class
 
-# Package Files #
+### Intellij Patch ###
+
+*.iml
+
+
+### Package Files ###
 *.jar
 *.war
+*.ear
