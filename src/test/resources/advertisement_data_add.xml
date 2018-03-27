@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <advertisements advertisement_id="1" adv_text="Special Offer" restaurant_id="2"/>
+    <advertisements advertisement_id="2" adv_text="Best place" restaurant_id="3"/>
+    <advertisements advertisement_id="3" adv_text="Only Today" restaurant_id="1"/>
+    <advertisements advertisement_id="4" adv_text="Attention" restaurant_id="2"/>
+    <advertisements advertisement_id="5" adv_text="Sales" restaurant_id="3"/>
+    <advertisements advertisement_id="6" adv_text="Com on!" restaurant_id="1"/>
+</dataset>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <users id="1" user_name="Dav" last_name="Peterson" user_birth="2012-12-15" login="login" password="password" user_email="mail" user_phone="345-34-534-55-21"/>
+    <users id="2" user_name="Tom" last_name="Tester" user_birth="1717-01-09" login="qwe" password="wer" user_email="mail@r" user_phone="234-34-567-77-21"/>
+    <users id="3" user_name="Folly" last_name="Book" user_birth="1212-02-15" login="asd" password="dfg" user_email="mail@e" user_phone="345-34-345-67-43"/>
+    <users id="4" user_name="Collins" last_name="Forest" user_birth="2022-03-02" login="zxc" password="xcv" user_email="mail@q" user_phone="678-52-234-55-21"/>
+    <users id="5" user_name="Trevor" last_name="Tree" user_birth="1988-12-05" login="ert" password="sdf" user_email="mail@e" user_phone="980-78-234-55-55"/>
+    <users id="6" user_name="Bill" last_name="Tree" user_birth="1988-12-05" login="tyu" password="ertyy" user_email="mail@r" user_phone="980-78-765-55-55"/>
+    <users id="7" user_name="Trevor" last_name="Tree" user_birth="1988-12-05" login="ghj" password="sdf" user_email="mail@y" user_phone="980-78-234-55-55"/>
+    <users id="8" user_name="Fill" last_name="Dee" user_birth="1988-12-05" login="bnm" password="brb" user_email="mail@j" user_phone="980-78-234-55-55"/>
+    <users id="9" user_name="Clin" last_name="Mi" user_birth="1988-12-05" login="uio" password="we" user_email="mail@i" user_phone="980-96-234-55-69"/>
+    <users id="10" user_name="Lep" last_name="Reat" user_birth="1988-12-05" login="jkl" password="r" user_email="mail@n" user_phone="980-78-234-85-55"/>
+    <users id="11" user_name="Sun" last_name="Ter" user_birth="1988-12-05" login="mbv" password="tyu" user_email="mail@f" user_phone="345-22-752-55-55"/>
+    <users id="12" user_name="Dav" last_name="Peterson" user_birth="2012-12-15" login="login" password="password" user_email="mail" user_phone="345-34-534-55-21"/>
+    <users id="13" user_name="Tom" last_name="Tester" user_birth="1717-01-09" login="qwe" password="wer" user_email="mail@r" user_phone="234-34-567-77-21"/>
+    <users id="14" user_name="Folly" last_name="Book" user_birth="1212-02-15" login="asd" password="dfg" user_email="mail@e" user_phone="345-34-345-67-43"/>
+    <users id="15" user_name="Collins" last_name="Forest" user_birth="2022-03-02" login="zxc" password="xcv" user_email="mail@q" user_phone="678-52-234-55-21"/>
+    <users id="16" user_name="Trevor" last_name="Tree" user_birth="1988-12-05" login="ert" password="sdf" user_email="mail@e" user_phone="980-78-234-55-55"/>
+    <users id="17" user_name="Bill" last_name="Tree" user_birth="1988-12-05" login="tyu" password="ertyy" user_email="mail@r" user_phone="980-78-765-55-55"/>
+    <users id="18" user_name="Trevor" last_name="Tree" user_birth="1988-12-05" login="ghj" password="sdf" user_email="mail@y" user_phone="980-78-234-55-55"/>
+    <users id="19" user_name="Fill" last_name="Dee" user_birth="1988-12-05" login="bnm" password="brb" user_email="mail@j" user_phone="980-78-234-55-55"/>
+    <users id="20" user_name="Clin" last_name="Mi" user_birth="1988-12-05" login="uio" password="we" user_email="mail@i" user_phone="980-96-234-55-69"/>
+    <users id="21" user_name="Lep" last_name="Reat" user_birth="1988-12-05" login="jkl" password="r" user_email="mail@n" user_phone="980-78-234-85-55"/>
+    <users id="22" user_name="Sun" last_name="Ter" user_birth="1988-12-05" login="mbv" password="tyu" user_email="mail@f" user_phone="345-22-752-55-55"/>
+
+    <restaurants restaurant_id="1" rest_name="Trevor" rest_city="Minsk" rest_district="Central" rest_street="Long Street" house_number="13" rest_phone="741-78-234-55-55" rest_describe="Good" rest_photo="https:/rest1.jpg"/>
+    <restaurants restaurant_id="2" rest_name="Zarina" rest_city="Vitebsk" rest_district="Side" rest_street="Short Street" house_number="12a" rest_phone="980-74-234-55-55" rest_describe="Nice" rest_photo="https:/rest2.jpg"/>
+    <restaurants restaurant_id="3" rest_name="Dumm" rest_city="Mogilev" rest_district="East" rest_street="Cross Street" house_number="123" rest_phone="980-78-638-78-55" rest_describe="Bad" rest_photo="https:/rest3.png"/>
+
+    <advertisements advertisement_id="1" adv_text="Special Offer" restaurant_id="2"/>
+    <advertisements advertisement_id="2" adv_text="Best place" restaurant_id="3"/>
+    <advertisements advertisement_id="3" adv_text="Only Today" restaurant_id="1"/>
+    <advertisements advertisement_id="4" adv_text="Attention" restaurant_id="2"/>
+    <advertisements advertisement_id="5" adv_text="Sales" restaurant_id="3"/>
+    <advertisements advertisement_id="6" adv_text="Com on!" restaurant_id="1"/>
+
+    <orders orders_id="1" user_id="1" rest_id="1" order_date="1988-12-05"/>
+
+    <reviews reviews_id="1" rev_date="1988-12-06" rev_text="Nice" user_id="1" restaurants_id="1" />
+
+</dataset>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <restaurants restaurant_id="1" rest_name="Trevor" rest_city="Minsk" rest_district="Central" rest_street="Long Street" house_number="13" rest_phone="741-78-234-55-55" rest_describe="Good" rest_photo="https:/rest1.jpg"/>
+    <restaurants restaurant_id="2" rest_name="Zarina" rest_city="Vitebsk" rest_district="Side" rest_street="Short Street" house_number="12a" rest_phone="980-74-234-55-55" rest_describe="Nice" rest_photo="https:/rest2.jpg"/>
+    <restaurants restaurant_id="3" rest_name="Dumm" rest_city="Mogilev" rest_district="East" rest_street="Cross Street" house_number="123" rest_phone="980-78-638-78-55" rest_describe="Bad" rest_photo="https:/rest3.png"/>
+</dataset>
