@@ -17,20 +17,6 @@ public abstract class AbstractMySQLDao<T> {
 
     protected Connection connection;
 
-//    public AbstractMySQLDao(Connection connection) {
-//
-//    }
-
-//    public AbstractMySQLDao() throws DaoException {
-//        this.connection = getConnection();
-//    }
-
-
-    //TESTS
-//    public AbstractMySQLDao(Connection connection) {
-//
-//    }
-
     protected abstract String selectQuery();
 
     protected abstract String selectByIdQuery();
@@ -56,10 +42,6 @@ public abstract class AbstractMySQLDao<T> {
     protected abstract void preparedStatementForUpdate(PreparedStatement ps, T t) throws SQLException;
 
 
-
-
-
-
 //    Properties property = new Properties();
 //    try (FileInputStream file = new FileInputStream("src/com/java/lesson/prim10/mySqlDB/config.properties")) {
 //        property.load(file);
@@ -70,9 +52,7 @@ public abstract class AbstractMySQLDao<T> {
 //            property.getProperty("URL");
 //    String USER = property.getProperty("USER");
 //    String PASSWORD = property.getProperty("PASSWORD");
-//
 //    Connection connection = null;
-//
 //    try {
 //        connection = DriverManager.getConnection(URL, USER, PASSWORD);
 //    } catch (SQLException e) {

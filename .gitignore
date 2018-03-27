@@ -7,8 +7,6 @@ target
 src/com/java/lesson/restaurant/reservation/notUse/*
 web/testJsp
 
-
-
 ### Java ###
 
 *.class

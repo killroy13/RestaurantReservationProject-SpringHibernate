@@ -20,18 +20,6 @@ public class UsersDaoImpl extends AbstractMySQLDao<UserDto> implements UsersDao 
     public UsersDaoImpl() throws DaoException {
     }
 
-//    public UsersDaoImpl(Connection connection) throws DaoException {
-//        super(connection);
-//    }
-
-
-    //TESTS
-//    public UsersDaoImpl(Connection connection) {
-//        super(connection);
-//
-//    }
-
-
     @Override
     protected String selectQuery() {
         return "SELECT users_id, user_name, last_name, " +
