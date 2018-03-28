@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <users users_id="1" user_name="Named" last_name="Sec" user_birth="1212-12-20" login="wer" password="ds" user_email="ma@l" user_phone="375-45-522-59-85"/>
-
+    <users users_id="1" user_name="Dav" last_name="Peterson" user_birth="2012-12-15" login="login" password="password" user_email="mail" user_phone="3451"/>
+    <users users_id="2" user_name="Tom" last_name="Tester" user_birth="1717-01-09" login="qwe" password="wer" user_email="maile" user_phone="234"/>
+    <users users_id="3" user_name="Folly" last_name="Book" user_birth="1212-02-15" login="asd" password="dfg" user_email="mailr" user_phone="34543"/>
 </dataset>

@@ -57,7 +57,7 @@ public class Main {
         /*Вывод списка user*/
         System.out.println(us.getAll());
 
-        /*ЗАкрытие*/
+        /*Закрытие*/
         us.close();
 
 
@@ -104,7 +104,6 @@ public class Main {
 
         /*ЗАкрытие*/
         rest.close();
-
 
 
         /**AdvertisementDto*/
@@ -171,10 +170,6 @@ public class Main {
 
         /*Закрытие*/
 //        adv.close();
-
-
-
-
 
 
 
