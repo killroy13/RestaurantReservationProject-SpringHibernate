@@ -4,9 +4,7 @@
 out
 target
 
-src/com/java/lesson/restaurant/reservation/notUse/*
-src/com/java/lesson/restaurant/reservation/notUse/tests/*
-
+src/com/java/lesson/restaurant/reservation/notUse/
 web/testJsp
 
 ### Java ###

@@ -26,6 +26,8 @@ import java.util.Properties;
  */
 public class UsersDaoImplTestJUnit extends DBTestCase {
 
+    private UsersDaoImpl usersDao = new UsersDaoImpl();
+
     public UsersDaoImplTestJUnit() throws DaoException {
         setProperties();
     }
@@ -54,7 +56,6 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
                 System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL),
                 System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME),
                 System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD));
-//        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.setSetUpOperation(DatabaseOperation.NONE);
         IDataSet exceptedDataSet = getDataSet();
         databaseTester.setDataSet(exceptedDataSet);
@@ -67,9 +68,8 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //        System.out.println("After");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testGetAll() throws Exception {
-        UsersDaoImpl usersDao = new UsersDaoImpl();
         List<UserDto> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
 //        System.out.println("test GetAll");
@@ -77,7 +77,6 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
     @Test
     public void testGetById() throws Exception {
-        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = usersDao.getById(1);
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Named", user.getfName());
@@ -87,7 +86,6 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
     @Test
     public void testGetByLoginAndPassword() throws Exception {
-        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = usersDao.getByLoginAndPassword("oil", "li");
         assertEquals("FirstName expected: ", "Lara", user.getfName());
         assertEquals("SecondName expected: ", "Croft", user.getsName());
@@ -96,7 +94,6 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
 //    @Test
 //    public void testInsert() throws Exception {
-//        UsersDaoImpl usersDao = new UsersDaoImpl();
 //        UserDto user = new UserDto();
 //        user.setfName("Sunny");
 //        user.setsName("Bunny");
@@ -113,13 +110,11 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //        IDataSet addDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/user_data_add.xml"));
 //        String[] ignore = {"users_id", "user_birth"};
 //        Assertion.assertEqualsIgnoreCols(addDataSet, dataSet, "users", ignore);
-//
 //        System.out.println("test insert");
 //    }
 //
 //    @Test
 //    public void testUpdate() throws Exception {
-//        UsersDaoImpl usersDao = new UsersDaoImpl();
 //        UserDto user = new UserDto();
 //        user.setId(21);
 //        user.setfName("Sunny");
@@ -142,7 +137,6 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //
 //    @Test
 //    public void testDelete() throws Exception {
-//        UsersDaoImpl usersDao = new UsersDaoImpl();
 //        usersDao.delete(26);
 //
 //        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
