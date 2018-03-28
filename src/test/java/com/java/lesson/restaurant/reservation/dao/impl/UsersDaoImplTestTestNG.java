@@ -63,7 +63,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     public void testGetAll() throws Exception {
         List<UserDto> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
-        System.out.println("test GetAll");
+//        System.out.println("test GetAll");
     }
 
     @Test(groups = {"get"}, dependsOnMethods = "testGetAll")
@@ -72,7 +72,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Dav", user.getfName());
         assertEquals("Second Name expected: ", "Peterson", user.getsName());
-        System.out.println("test GetById");
+//        System.out.println("test GetById");
     }
 
     @Test(groups = {"get"}, dependsOnMethods = "testGetById")
@@ -80,7 +80,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
         UserDto user = usersDao.getByLoginAndPassword("qwe", "wer");
         assertEquals("FirstName expected: ", "Tom", user.getfName());
         assertEquals("SecondName expected: ", "Tester", user.getsName());
-        System.out.println("test GetByIdAndLogin");
+//        System.out.println("test GetByIdAndLogin");
     }
 
     @Test (groups = {"crud"}, dependsOnMethods = "testGetByLoginAndPassword")
