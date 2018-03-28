@@ -26,7 +26,7 @@ import java.util.Properties;
  */
 public class UsersDaoImplTestJUnit extends DBTestCase {
 
-    private UsersDaoImpl usersDao = new UsersDaoImpl();
+//    private UsersDaoImpl usersDao = new UsersDaoImpl();
 
     public UsersDaoImplTestJUnit() throws DaoException {
         setProperties();
@@ -70,6 +70,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
     @Test
     public void testGetAll() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         List<UserDto> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
 //        System.out.println("test GetAll");
@@ -77,6 +78,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
     @Test
     public void testGetById() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = usersDao.getById(1);
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Named", user.getfName());
@@ -86,6 +88,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
     @Test
     public void testGetByLoginAndPassword() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = usersDao.getByLoginAndPassword("oil", "li");
         assertEquals("FirstName expected: ", "Lara", user.getfName());
         assertEquals("SecondName expected: ", "Croft", user.getsName());
@@ -94,6 +97,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 
 //    @Test
 //    public void testInsert() throws Exception {
+//UsersDaoImpl usersDao = new UsersDaoImpl();
 //        UserDto user = new UserDto();
 //        user.setfName("Sunny");
 //        user.setsName("Bunny");
@@ -115,6 +119,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //
 //    @Test
 //    public void testUpdate() throws Exception {
+//UsersDaoImpl usersDao = new UsersDaoImpl();
 //        UserDto user = new UserDto();
 //        user.setId(21);
 //        user.setfName("Sunny");
@@ -137,6 +142,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
 //
 //    @Test
 //    public void testDelete() throws Exception {
+//UsersDaoImpl usersDao = new UsersDaoImpl();
 //        usersDao.delete(26);
 //
 //        QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
