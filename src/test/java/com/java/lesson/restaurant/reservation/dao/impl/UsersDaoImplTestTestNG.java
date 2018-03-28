@@ -22,8 +22,6 @@ import java.util.Properties;
  */
 public class UsersDaoImplTestTestNG extends DBTestCase {
 
-    private UsersDaoImpl usersDao = new UsersDaoImpl();
-
     public UsersDaoImplTestTestNG() throws DaoException {
         setProperties();
     }
@@ -61,6 +59,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
 
     @Test(groups = {"get"})
     public void testGetAll() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         List<UserDto> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
 //        System.out.println("test GetAll");
@@ -68,6 +67,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
 
     @Test(groups = {"get"}, dependsOnMethods = "testGetAll")
     public void testGetById() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = usersDao.getById(1);
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Dav", user.getfName());
@@ -77,14 +77,16 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
 
     @Test(groups = {"get"}, dependsOnMethods = "testGetById")
     public void testGetByLoginAndPassword() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = usersDao.getByLoginAndPassword("qwe", "wer");
         assertEquals("FirstName expected: ", "Tom", user.getfName());
         assertEquals("SecondName expected: ", "Tester", user.getsName());
 //        System.out.println("test GetByIdAndLogin");
     }
 
-    @Test (groups = {"crud"}, dependsOnMethods = "testGetByLoginAndPassword")
+    @Test(groups = {"crud"}, dependsOnMethods = "testGetByLoginAndPassword")
     public void testUpdate() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = new UserDto();
         user.setId(5);
         user.setfName("Lara");
@@ -104,8 +106,9 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
 //        System.out.println("test Update");
     }
 
-    @Test (groups = {"crud"}, dependsOnMethods = "testUpdate")
+    @Test(groups = {"crud"}, dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         usersDao.delete(5);
         QueryDataSet dataSet = new QueryDataSet(getDatabaseTester().getConnection());
         dataSet.addTable("users");
@@ -116,8 +119,9 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     }
 
 
-        @Test (groups = {"crud"}, dependsOnMethods = "testDelete")
+    @Test(groups = {"crud"}, dependsOnMethods = "testDelete")
     public void testInsert() throws Exception {
+        UsersDaoImpl usersDao = new UsersDaoImpl();
         UserDto user = new UserDto();
         user.setfName("Sunny");
         user.setsName("Bunny");
