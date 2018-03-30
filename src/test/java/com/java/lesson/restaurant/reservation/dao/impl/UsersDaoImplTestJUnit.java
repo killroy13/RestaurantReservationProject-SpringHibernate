@@ -26,8 +26,6 @@ import java.util.Properties;
  */
 public class UsersDaoImplTestJUnit extends DBTestCase {
 
-//    private UsersDaoImpl usersDao = new UsersDaoImpl();
-
     public UsersDaoImplTestJUnit() throws DaoException {
         setProperties();
     }
