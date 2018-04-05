@@ -126,17 +126,16 @@
     </context-param>
 
 
-
     <!--__-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>com.java.lesson.restaurant.reservation.attributes.RestaurantReservationConfig</param-value>
+    </context-param>
+
+
     <!--<context-param>-->
     <!--<param-name>contextConfigLocation</param-name>-->
-    <!--<param-value>com.java.lesson.restaurant.reservation.attributes.RestaurantReservationConfig</param-value>-->
-    <!--</context-param>-->
-
-
-    <!--<context-param>-->
-        <!--<param-name>contextConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/appContext-dao.xml</param-value>-->
+    <!--<param-value>/WEB-INF/appContext-dao.xml</param-value>-->
     <!--</context-param>-->
 
 

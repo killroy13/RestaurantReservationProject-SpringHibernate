@@ -5,7 +5,7 @@ import com.java.lesson.restaurant.reservation.dao.AdvertisementsDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
 import com.java.lesson.restaurant.reservation.dto.Advertisement;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +16,8 @@ import java.util.List;
 /**
  * Created by UserDto on 21.03.2018.
  */
-@Repository
-//    @Component("advertisementsDaoImpl")
+//@Repository
+    @Component("advertisementsDao")
 public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> implements AdvertisementsDao {
     public AdvertisementsDaoImpl() throws DaoException {
     }
