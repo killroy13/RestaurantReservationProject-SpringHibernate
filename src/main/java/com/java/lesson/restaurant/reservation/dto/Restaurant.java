@@ -1,10 +1,13 @@
 package com.java.lesson.restaurant.reservation.dto;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by UserDto on 02.03.2018.
  * @author Igor Iv.
  */
-public class RestaurantDto extends ModelDto {
+@Repository
+public class Restaurant extends Model {
     String name;
     String city;
     String district;
@@ -13,6 +16,8 @@ public class RestaurantDto extends ModelDto {
     String phone;
     String describe;
     String photo;
+
+    public Restaurant(){}
 
     public String getName() {
         return name;

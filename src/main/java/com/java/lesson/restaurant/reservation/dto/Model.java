@@ -4,7 +4,7 @@ package com.java.lesson.restaurant.reservation.dto;
  * Created by UserDto on 02.03.2018.
  * @author Igor Iv.
  */
-public class ModelDto {
+public class Model {
     int id;
 
     public int getId() {

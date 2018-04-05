@@ -11,7 +11,7 @@
     <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 <form action="/myServlet" method="post">
     <p> id: <label><input type="text" name="id" placeholder="id"
                           value="<%=request.getAttribute("id")%>"></label></p>
@@ -52,6 +52,6 @@
     <p><a href="/index.jsp">Home</a></p>
 </div>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

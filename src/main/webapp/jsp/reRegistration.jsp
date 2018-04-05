@@ -13,8 +13,8 @@
   <title>Registration Form</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.UserDto" scope="request"/>
+<jsp:include page="header.jsp"/>
+<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="request"/>
 <form action="/myServlet" method="post" style="align-content: center">
   <table style="display: block; margin: auto; text-align: center; border: solid 1px black">
     <th>
@@ -98,6 +98,6 @@
 
   <%--<input type="submit" name="registration" value="registration">--%>
 </form>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

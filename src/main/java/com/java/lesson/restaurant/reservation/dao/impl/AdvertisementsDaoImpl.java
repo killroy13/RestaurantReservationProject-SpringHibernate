@@ -4,7 +4,8 @@ import com.java.lesson.restaurant.reservation.dao.AbstractMySQLDao;
 import com.java.lesson.restaurant.reservation.dao.AdvertisementsDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
-import com.java.lesson.restaurant.reservation.dto.AdvertisementDto;
+import com.java.lesson.restaurant.reservation.dto.Advertisement;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,9 @@ import java.util.List;
 /**
  * Created by UserDto on 21.03.2018.
  */
-public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> implements AdvertisementsDao {
+@Repository
+//    @Component("advertisementsDaoImpl")
+public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> implements AdvertisementsDao {
     public AdvertisementsDaoImpl() throws DaoException {
     }
 
@@ -46,11 +49,11 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
     }
 
     @Override
-    protected List<AdvertisementDto> parseResultSet(ResultSet rs) throws DaoException {
-        LinkedList<AdvertisementDto> result = new LinkedList<>();
+    protected List<Advertisement> parseResultSet(ResultSet rs) throws DaoException {
+        LinkedList<Advertisement> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                AdvertisementDto advertisement = new AdvertisementDto();
+                Advertisement advertisement = new Advertisement();
                 advertisement.setId(rs.getInt(1));
                 advertisement.setOfferText(rs.getString(2));
                 advertisement.setRestaurantId(rs.getInt(3));
@@ -68,13 +71,13 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
     }
 
     @Override
-    protected void preparedStatementForInsert(PreparedStatement ps, AdvertisementDto advertisement) throws SQLException {
+    protected void preparedStatementForInsert(PreparedStatement ps, Advertisement advertisement) throws SQLException {
         ps.setString(1, advertisement.getOfferText());
         ps.setInt(2, advertisement.getRestaurantId());
     }
 
     @Override
-    protected void preparedStatementForUpdate(PreparedStatement ps, AdvertisementDto advertisement) throws SQLException {
+    protected void preparedStatementForUpdate(PreparedStatement ps, Advertisement advertisement) throws SQLException {
         ps.setInt(1, advertisement.getId());
         ps.setString(2, advertisement.getOfferText());
         ps.setInt(3, advertisement.getRestaurantId());
@@ -83,8 +86,8 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
     }
 
     @Override
-    public List<AdvertisementDto> getAll() throws DaoException {
-        List<AdvertisementDto> result;
+    public List<Advertisement> getAll() throws DaoException {
+        List<Advertisement> result;
         try {
             PreparedStatement ps = getPreparedStatement(selectQuery());
             try (ResultSet rs = ps.executeQuery()) {
@@ -97,14 +100,14 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
     }
 
     @Override
-    public AdvertisementDto getById(int id) throws DaoException {
-        AdvertisementDto advertisement = null;
+    public Advertisement getById(int id) throws DaoException {
+        Advertisement advertisement = null;
         try {
             PreparedStatement ps = getPreparedStatement(selectByIdQuery());
             preparedStatementForSelectById(ps, id);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    advertisement = new AdvertisementDto();
+                    advertisement = new Advertisement();
                     advertisement.setId(rs.getInt(1));
                     advertisement.setOfferText(rs.getString(2));
                     advertisement.setRestaurantId(rs.getInt(3));
@@ -121,7 +124,7 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
     }
 
     @Override
-    public void insert(AdvertisementDto advertisement) throws DaoException {
+    public void insert(Advertisement advertisement) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(insertQuery());
             preparedStatementForInsert(ps, advertisement);
@@ -132,7 +135,7 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
     }
 
     @Override
-    public void update(AdvertisementDto advertisement) throws DaoException {
+    public void update(Advertisement advertisement) throws DaoException {
         try {
             PreparedStatement ps = getPreparedStatement(updateQuery());
             preparedStatementForUpdate(ps, advertisement);
@@ -148,7 +151,7 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<AdvertisementDto> im
             PreparedStatement ps = getPreparedStatement(deleteQuery());
             preparedStatementForSelectById(ps, id);
             ps.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DaoException("Error in delete method", e);
         }
     }

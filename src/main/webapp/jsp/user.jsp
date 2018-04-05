@@ -12,12 +12,12 @@
     <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 
 <div style="align-content: center"  >
     <p>USER INFO</p>
 </div>
-<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.UserDto" scope="request"/>
+<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="request"/>
 
 #:  ${user.id} <br/>
 <%--EL - Expression Language--%>
@@ -38,6 +38,6 @@ phone: <%=user.getPhone()%><br/>
     <input type="submit" name="showUsers" value="show users">
 </form>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.UserDto" scope="request"/>
+<jsp:useBean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="request"/>
 <h1>Hello! <%=session.getAttribute("name")%>  <%=session.getAttribute("sName")%>
 </h1>
 

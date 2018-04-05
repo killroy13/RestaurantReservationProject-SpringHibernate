@@ -11,12 +11,12 @@
   <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 
 <div style="align-content: center"  >
   <p>RESTAURANT INFO</p>
 </div>
-<jsp:useBean id="restaurant" class="com.java.lesson.restaurant.reservation.dto.RestaurantDto" scope="request"/>
+<jsp:useBean id="restaurant" class="com.java.lesson.restaurant.reservation.dto.Restaurant" scope="request"/>
 
 #:  ${restaurant.id} <br/>
 Name: <%=restaurant.getName()%><br/>
@@ -39,7 +39,7 @@ Photo: <%=restaurant.getPhoto()%><br/>
   <input type="submit" name="showRestaurants" value="show restaurants">
 </form>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
 

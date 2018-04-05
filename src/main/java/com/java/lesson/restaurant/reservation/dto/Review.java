@@ -1,14 +1,19 @@
 package com.java.lesson.restaurant.reservation.dto;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by UserDto on 02.03.2018.
  * @author Igor Iv.
  */
-public class ReviewDto extends ModelDto {
+@Repository
+public class Review extends Model {
     String date;
     String text;
     int user;
     String restaurant;
+
+    public Review (){}
 
     public String getDate() {
         return date;

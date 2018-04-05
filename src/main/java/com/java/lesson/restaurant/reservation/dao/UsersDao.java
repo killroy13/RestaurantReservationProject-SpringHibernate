@@ -2,15 +2,15 @@ package com.java.lesson.restaurant.reservation.dao;
 
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
-import com.java.lesson.restaurant.reservation.dto.UserDto;
+import com.java.lesson.restaurant.reservation.dto.User;
 
 import java.util.List;
 
 /**
  * Created by UserDto on 02.03.2018.
  */
-public interface UsersDao extends GenericDao<UserDto> {
-    List<UserDto> getAll(/*PrintWriter printWriter*/) throws DaoException;
+public interface UsersDao extends GenericDao<User> {
+    List<User> getAll() throws DaoException;
 
 
     //TODO NoSuchEntity
@@ -19,9 +19,9 @@ public interface UsersDao extends GenericDao<UserDto> {
      *
      */
 
-    UserDto getById(int id) throws DaoException, NoSuchEntityException;
+    User getById(int id) throws DaoException, NoSuchEntityException;
 
-    UserDto getByLoginAndPassword(String login, String password) throws DaoException, NoSuchEntityException;
+    User getByLoginAndPassword(String login, String password) throws DaoException, NoSuchEntityException;
 }
 
 
