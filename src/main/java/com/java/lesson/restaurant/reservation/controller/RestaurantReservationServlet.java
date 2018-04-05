@@ -31,9 +31,6 @@ import static com.java.lesson.restaurant.reservation.attributes.RestaurantReserv
 public class RestaurantReservationServlet extends HttpServlet {
 
 
-//    ApplicationContext context = new AnnotationConfigApplicationContext();
-//    ApplicationContext context = new AnnotationConfigWebApplicationContext();
-
     @Autowired
     private UsersDaoImpl usersDao;
 
@@ -43,96 +40,67 @@ public class RestaurantReservationServlet extends HttpServlet {
     @Autowired
     private AdvertisementsDaoImpl advertisementsDao;
 
-
-
-//    @Autowired
-//    private User user;
-//    @Autowired
-//    private Restaurant restaurant;
-//    @Autowired
-//    private Advertisement advertisement;
-
-
-
-    // нужен для получения контекста
-//    public void init(ServletConfig config) throws ServletException {
-//        super.init(config);
-//        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
-//                config.getServletContext());
-//    }
-
     public void init() throws ServletException {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
-    // штука соотвествующая всему приложению
-//    ServletContext servletContext = this.getServletContext();
-//    String appCtxPath = this.getServletContext().getInitParameter("contextConfigLocation");
-
     public static RestaurantReservationAttributes attributes = new RestaurantReservationAttributes();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(">>> IN DOPOST");
         processRequest(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(">>> IN DOGET");
         processRequest(request, response);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html; charset=windows-1251");
         String link;
-        System.out.println(">>> IN pOCESSS");
         try {
+
             HttpSession session = request.getSession(false);
-            System.out.println(">>> IN process TRY");
+
             if (request.getParameter("showUsers") != null) {
-                link = showUsers(request, session);
+                link = showUsers(request);
             } else if (request.getParameter("showUserById") != null) {
-                link = showUserById(request, session);
+                link = showUserById(request);
             } else if (request.getParameter("updateUser") != null) {
-                link = updateUser(request, session);
+                link = updateUser(request);
             } else if (request.getParameter("insertUser") != null) {
-                link = insertUser(request, session);
+                link = insertUser(request);
             } else if (request.getParameter("deleteUser") != null) {
-                link = deleteUser(request, session);
+                link = deleteUser(request);
             } else if (request.getParameter("login") != null) {
-                link = userLogin(request, session);
-//                System.out.println(">>>> IN ELSE IF processREQUEST");
-//                throw new DaoException();
+                link = userLogin(request);
             } else if (request.getParameter("logout") != null) {
                 link = userLogout(session);
 
             } else if (request.getParameter("showRestaurants") != null) {
-//                System.out.println(">>>> IN ELSE 1");
-                link = showRestaurants(request, session);
+                link = showRestaurants(request);
             } else if (request.getParameter("showRestaurantById") != null) {
-                link = showRestaurantById(request, session);
+                link = showRestaurantById(request);
             } else if (request.getParameter("updateRestaurant") != null) {
-                link = updateRestaurant(request, session);
+                link = updateRestaurant(request);
             } else if (request.getParameter("insertRestaurant") != null) {
-                link = insertRestaurant(request, session);
+                link = insertRestaurant(request);
             } else if (request.getParameter("deleteRestaurant") != null) {
-                link = deleteRestaurant(request, session);
+                link = deleteRestaurant(request);
 
 
             } else if (request.getParameter("showAdvertisements") != null) {
-                link = showAdvertisements(request, session);
+                link = showAdvertisements(request);
             }else if (request.getParameter("showAdvertisementById") != null) {
-                link = showAdvertisementById(request, session);
+                link = showAdvertisementById(request);
             }else if (request.getParameter("addAdvertisement") != null) {
-                link = addAdvertisement(request, session);
+                link = addAdvertisement(request);
             }else if (request.getParameter("deleteAdvertisement") != null) {
-                link = deleteAdvertisement(request, session);
+                link = deleteAdvertisement(request);
             } else {
-                System.out.println(">>>>> IN ELSE");
                 link = ERROR_PAGE;
             }
             request.getRequestDispatcher(link).forward(request, response);
         } catch (Exception e) {
-            System.out.println(">>>> IN CATCH REQUESTRESP");
             e.printStackTrace();
             request.setAttribute("error", e);
             throw new ServletException(e);
@@ -146,13 +114,9 @@ public class RestaurantReservationServlet extends HttpServlet {
      * USERS
      */
 
-    protected String showUsers(HttpServletRequest request, HttpSession session) throws IOException, ServletException {
+    protected String showUsers(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-//            /*UsersDaoImpl*/ usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-
-//            UsersDaoImpl usersDao = new UsersDaoImpl();
-
             request.setAttribute(USER_DTO, usersDao.getAll());
             link = SHOW_ALL_USERS_PAGE;
         } catch (DaoException e) {
@@ -164,11 +128,9 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
     //TODO показ пользователю сообщения об ошибке (нет в базе)
-    protected String showUserById(HttpServletRequest request, HttpSession session) throws IOException, ServletException {
+    protected String showUserById(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-
-            /*UsersDaoImpl*/ usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
             String idStr = request.getParameter(ID);
             if (attributes.validId(idStr).isEmpty()) {
                 Integer id = Integer.valueOf(idStr);
@@ -191,11 +153,11 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
     //TODO Исправить! (возможность изменять только 1 поле)
-    protected String updateUser(HttpServletRequest request, HttpSession session) throws ServletException, IOException {
+    protected String updateUser(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-            /*UsersDaoImpl */usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-            User user = (User) session.getAttribute(USER_DTO);
+
+            User user = new User();
 
             String id = request.getParameter(ID);
             String fName = request.getParameter(FIRST_NAME);
@@ -261,11 +223,14 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-    protected String insertUser(HttpServletRequest request, HttpSession session) throws ServletException, IOException {
+    protected String insertUser(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-            /*UsersDaoImpl */usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
-            User user = (User) session.getAttribute(USER_DTO);
+//            User user = (User) session.getAttribute(USER_DTO);
+
+
+            User user = new User();
+
 
             String fName = request.getParameter(FIRST_NAME);
             String sName = request.getParameter(SECOND_NAME);
@@ -324,10 +289,9 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
 
-    protected String deleteUser(HttpServletRequest request, HttpSession session) throws ServletException, IOException {
+    protected String deleteUser(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-            /*UsersDaoImpl */usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
             String id = request.getParameter("idForDelete");
             if (attributes.validId(id).isEmpty()) {
                 request.setAttribute("id", id);
@@ -357,22 +321,18 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
     //TODO Убрать вход когда уже вошел/  Проблема с воодом пароля (Вывод сообщения: Incorrect password)
-    protected String userLogin(HttpServletRequest request, HttpSession session) throws ServletException, IOException {
+    protected String userLogin(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
             String login = request.getParameter(LOGIN);
             String password = request.getParameter(PASSWORD);
 
-//            HttpSession session = request.getSession(true);
-
+            HttpSession session = request.getSession(true);
 
             HashMap<String, String> dataErrorMap = attributes.validateLoginUser(login, password);
 
             if (dataErrorMap.isEmpty()) {
-                System.out.println(">>>> IN IF");
-                /*UsersDaoImpl*/ usersDao = (UsersDaoImpl) session.getAttribute(USERS_DAO);
                 User user = usersDao.getByLoginAndPassword(login, password);
-                System.out.println(">>>> IN TRY");
 
                 session.setAttribute("name", user.getfName());
                 session.setAttribute("sName", user.getsName());
@@ -393,40 +353,27 @@ public class RestaurantReservationServlet extends HttpServlet {
                 request.setAttribute("nullErrors", "");
 
                 request.setAttribute("errors", dataErrorMap);
-                System.out.println(">>>> IN ELSE");
                 link = RE_LOGIN_PAGE;
             }
         } catch (DaoException e) {
-            System.out.println(">>>> IN CATCH");
             e.printStackTrace();
             request.setAttribute("error", e);
             link = ERROR_PAGE;
         }
         return link;
     }
-
-
-
-
-
 
 
     /**
      * ADVERTISEMENTS
      */
 
-    protected String showAdvertisements(HttpServletRequest request, HttpSession session) throws IOException, ServletException {
+    protected String showAdvertisements(HttpServletRequest request) throws IOException, ServletException {
         String link;
-        System.out.println(">>>> ADV");
         try {
-            /*AdvertisementsDaoImpl*/ advertisementsDao = (AdvertisementsDaoImpl) session.getAttribute(ADVERTISEMENTS_DAO);
-            System.out.println(">>>> ADV TRY");
-
             request.setAttribute(ADVERTISEMENT_DTO, advertisementsDao.getAll());
             link = SHOW_ALL_ADVERTISEMENTS_PAGE;
         } catch (DaoException e) {
-            System.out.println(">>>> ADV CATCH");
-
             e.printStackTrace();
             request.setAttribute("error", e);
             link = ERROR_PAGE;
@@ -434,10 +381,9 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-    protected String showAdvertisementById(HttpServletRequest request, HttpSession session) throws IOException, ServletException{
+    protected String showAdvertisementById(HttpServletRequest request) throws IOException, ServletException{
         String link;
         try {
-            /*AdvertisementsDaoImpl*/ advertisementsDao = (AdvertisementsDaoImpl) session.getAttribute(ADVERTISEMENTS_DAO);
             String idStr = request.getParameter(ADVERTISEMENT_ID);
             if (attributes.validId(idStr).isEmpty()){
                 Integer id = Integer.valueOf(idStr);
@@ -457,11 +403,12 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-    protected String addAdvertisement (HttpServletRequest request, HttpSession session)throws ServletException, IOException{
+    protected String addAdvertisement (HttpServletRequest request)throws ServletException, IOException{
         String link;
         try {
-            /*AdvertisementsDaoImpl*/ advertisementsDao = (AdvertisementsDaoImpl) session.getAttribute(ADVERTISEMENTS_DAO);
-            Advertisement advertisement = (Advertisement) session.getAttribute(ADVERTISEMENT_DTO);
+//            Advertisement advertisement = (Advertisement) session.getAttribute(ADVERTISEMENT_DTO);
+
+            Advertisement advertisement = new Advertisement();
             String offerText = request.getParameter(ADVERTISEMENT_TEXT);
             String restaurantId = request.getParameter(ADVERTISEMENT_OF_RESTAURANT_ID);
             HashMap<String, String> dataErrorMap = attributes.vaidateInsertAdvertisement(offerText, restaurantId);
@@ -490,10 +437,9 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
     //TODO Исправить ошибку с удалением номера которого нет
-    protected String deleteAdvertisement(HttpServletRequest request, HttpSession session) throws IOException, ServletException{
+    protected String deleteAdvertisement(HttpServletRequest request) throws IOException, ServletException{
         String link;
         try {
-            /*AdvertisementsDaoImpl*/ advertisementsDao = (AdvertisementsDaoImpl) session.getAttribute(ADVERTISEMENTS_DAO);
             String id = request.getParameter("advertisementIdForDelete");
             if(attributes.validId(id).isEmpty()){
                 request.setAttribute("id", id);
@@ -513,21 +459,16 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
 
-
-
     /**
      * RESTAURANTS
      */
 
-    protected String showRestaurants(HttpServletRequest request, HttpSession session) throws IOException, ServletException {
+    protected String showRestaurants(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-//            System.out.println(">>>> IN TRY");
-            /*RestaurantsDaoImpl*/ restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
             request.setAttribute(RESTAURANT_DTO, restaurantsDao.getAll());
             link = SHOW_ALL_RESTAURANTS_PAGE;
         } catch (DaoException e) {
-//            System.out.println(">>>> IN CATCH");
             e.printStackTrace();
             request.setAttribute("error", e);
             link = ERROR_PAGE;
@@ -536,11 +477,9 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
 
-
-    protected String showRestaurantById(HttpServletRequest request, HttpSession session) throws IOException, ServletException {
+    protected String showRestaurantById(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-            /*RestaurantsDaoImpl*/ restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
             String idStr = request.getParameter(RESTAURANT_ID);
             if (attributes.validId(idStr).isEmpty()) {
                 Integer id = Integer.valueOf(idStr);
@@ -561,11 +500,12 @@ public class RestaurantReservationServlet extends HttpServlet {
     }
 
     //TODO Исправить на заливку фото с компьютера (не ссылка)
-    protected String updateRestaurant(HttpServletRequest request, HttpSession session) throws IOException, ServletException {
+    protected String updateRestaurant(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-            /*RestaurantsDaoImpl*/ restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
-            Restaurant restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+//            Restaurant restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+
+            Restaurant restaurant = new Restaurant();
             String id = request.getParameter(RESTAURANT_ID);
             String name = request.getParameter(RESTAURANT_NAME);
             String city = request.getParameter(RESTAURANT_CITY);
@@ -638,11 +578,12 @@ public class RestaurantReservationServlet extends HttpServlet {
 
 
     //TODO Доделать формат для фото
-    protected String insertRestaurant(HttpServletRequest request, HttpSession session) throws ServletException, IOException {
+    protected String insertRestaurant(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-            /*RestaurantsDaoImpl*/ restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
-            Restaurant restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+//            Restaurant restaurant = (Restaurant) session.getAttribute(RESTAURANT_DTO);
+
+            Restaurant restaurant = new Restaurant();
             String name = request.getParameter(RESTAURANT_NAME);
             String city = request.getParameter(RESTAURANT_CITY);
             String district = request.getParameter(RESTAURANT_DISTRICT);
@@ -707,10 +648,9 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-    protected String deleteRestaurant(HttpServletRequest request, HttpSession session) throws ServletException, IOException {
+    protected String deleteRestaurant(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-           /* RestaurantsDaoImpl*/ restaurantsDao = (RestaurantsDaoImpl) session.getAttribute(RESTAURANTS_DAO);
             String id = request.getParameter("restaurantIdForDelete");
             if (attributes.validId(id).isEmpty()) {
                 request.setAttribute("id", id);
@@ -731,28 +671,7 @@ public class RestaurantReservationServlet extends HttpServlet {
 
 
 
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
