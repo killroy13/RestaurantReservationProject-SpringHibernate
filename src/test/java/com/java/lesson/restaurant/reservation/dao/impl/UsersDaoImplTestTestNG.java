@@ -1,7 +1,7 @@
 package com.java.lesson.restaurant.reservation.dao.impl;
 
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
-import com.java.lesson.restaurant.reservation.dto.UserDto;
+import com.java.lesson.restaurant.reservation.dto.User;
 import org.dbunit.*;
 import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.IDataSet;
@@ -60,7 +60,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     @Test(groups = {"get"})
     public void testGetAll() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        List<UserDto> list = usersDao.getAll();
+        List<User> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
 //        System.out.println("test GetAll");
     }
@@ -68,7 +68,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     @Test(groups = {"get"}, dependsOnMethods = "testGetAll")
     public void testGetById() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = usersDao.getById(1);
+        User user = usersDao.getById(1);
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Dav", user.getfName());
         assertEquals("Second Name expected: ", "Peterson", user.getsName());
@@ -78,7 +78,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     @Test(groups = {"get"}, dependsOnMethods = "testGetById")
     public void testGetByLoginAndPassword() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = usersDao.getByLoginAndPassword("qwe", "wer");
+        User user = usersDao.getByLoginAndPassword("qwe", "wer");
         assertEquals("FirstName expected: ", "Tom", user.getfName());
         assertEquals("SecondName expected: ", "Tester", user.getsName());
 //        System.out.println("test GetByIdAndLogin");
@@ -87,7 +87,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     @Test(groups = {"crud"}, dependsOnMethods = "testGetByLoginAndPassword")
     public void testUpdate() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = new UserDto();
+        User user = new User();
         user.setId(5);
         user.setfName("Lara");
         user.setsName("Test");
@@ -122,7 +122,7 @@ public class UsersDaoImplTestTestNG extends DBTestCase {
     @Test(groups = {"crud"}, dependsOnMethods = "testDelete")
     public void testInsert() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = new UserDto();
+        User user = new User();
         user.setfName("Sunny");
         user.setsName("Bunny");
         user.setBirthDate("1988-12-05");

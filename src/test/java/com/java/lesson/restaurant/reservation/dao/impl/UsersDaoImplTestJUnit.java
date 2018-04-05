@@ -1,7 +1,7 @@
 package com.java.lesson.restaurant.reservation.dao.impl;
 
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
-import com.java.lesson.restaurant.reservation.dto.UserDto;
+import com.java.lesson.restaurant.reservation.dto.User;
 import org.dbunit.DBTestCase;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
@@ -69,7 +69,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
     @Test
     public void testGetAll() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        List<UserDto> list = usersDao.getAll();
+        List<User> list = usersDao.getAll();
         assertEquals("Excepted: ", getDataSet().getTable("users").getRowCount(), list.size());
 //        System.out.println("test GetAll");
     }
@@ -77,7 +77,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
     @Test
     public void testGetById() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = usersDao.getById(1);
+        User user = usersDao.getById(1);
         assertEquals("Expected: ", 1, user.getId());
         assertEquals("First Name expected: ", "Named", user.getfName());
         assertEquals("Second Name expected: ", "Sec", user.getsName());
@@ -87,7 +87,7 @@ public class UsersDaoImplTestJUnit extends DBTestCase {
     @Test
     public void testGetByLoginAndPassword() throws Exception {
         UsersDaoImpl usersDao = new UsersDaoImpl();
-        UserDto user = usersDao.getByLoginAndPassword("oil", "li");
+        User user = usersDao.getByLoginAndPassword("oil", "li");
         assertEquals("FirstName expected: ", "Lara", user.getfName());
         assertEquals("SecondName expected: ", "Croft", user.getsName());
 //        System.out.println("test GetByIdAndLogin");

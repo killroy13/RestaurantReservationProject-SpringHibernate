@@ -11,7 +11,7 @@
     <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 
 
 <form action="/myServlet" method="post" style="align-content: center">
@@ -71,6 +71,6 @@
     </div>
     <%--<input type="submit" name="registration" value="registration">--%>
 </form>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

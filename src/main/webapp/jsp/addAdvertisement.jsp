@@ -11,7 +11,7 @@
     <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 
 <h1>New Offers</h1>
 <form action="/myServlet" method="post">
@@ -23,6 +23,6 @@
 <div>
   <p><a href="/index.jsp">Home</a></p>
 </div>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

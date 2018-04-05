@@ -1,10 +1,14 @@
 package com.java.lesson.restaurant.reservation.dto;
 
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by UserDto on 02.03.2018.
  * @author Igor Iv.
  */
-public class UserDto extends ModelDto {
+public class User extends Model {
     String fName;
     String sName;
     String birthDate;
@@ -13,9 +17,10 @@ public class UserDto extends ModelDto {
     String eMail;
     String phone;
 
-    public UserDto(){}
+    public User() {
+    }
 
-    public UserDto(int id, String f_name, String s_name, String birth_day, String login, String password, String e_mail, String phone){
+    public User(int id, String f_name, String s_name, String birth_day, String login, String password, String e_mail, String phone){
         this.id = id;
         this.fName = f_name;
         this.sName = s_name;

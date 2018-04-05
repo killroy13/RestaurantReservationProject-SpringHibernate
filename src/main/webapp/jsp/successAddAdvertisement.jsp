@@ -12,7 +12,7 @@
   <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 <div style="align-content: center">
   <p>SUCCESSFUL! Offer of <%=request.getAttribute("restaurantId")%> is added</p>
 </div>
@@ -25,6 +25,6 @@
 <br/>
 
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

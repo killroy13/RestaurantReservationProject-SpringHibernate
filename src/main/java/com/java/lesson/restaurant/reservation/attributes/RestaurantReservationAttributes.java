@@ -126,7 +126,6 @@ public class RestaurantReservationAttributes {
 
 
 
-
     /*VALIDATIONS ADVERTISEMENT*/
     public HashMap<String, String> vaidateInsertAdvertisement(String offerText, String restaurantId){
         HashMap<String, String> errors = new HashMap<>();

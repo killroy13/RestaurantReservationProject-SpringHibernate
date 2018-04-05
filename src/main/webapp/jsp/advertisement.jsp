@@ -11,12 +11,12 @@
   <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 
 <div style="align-content: center"  >
   <p>ADVERTISEMENT INFO</p>
 </div>
-<jsp:useBean id="advertisement" class="com.java.lesson.restaurant.reservation.dto.AdvertisementDto" scope="request"/>
+<jsp:useBean id="advertisement" class="com.java.lesson.restaurant.reservation.dto.Advertisement" scope="request"/>
 
 #:  ${advertisement.id} <br/>
 Restaurants Offer: <%=advertisement.getOfferText()%><br/>
@@ -33,6 +33,6 @@ Restaurant id: <%=advertisement.getRestaurantId()%><br/>
   <input type="submit" name="showAdvertisements" value="show advertisements">
 </form>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

@@ -12,7 +12,7 @@
   <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 <div style="align-content: center">
   <p>SUCCESSFUL! User is update!</p>
 </div>
@@ -31,6 +31,6 @@ phone: <%=request.getAttribute("phone")%><br/>
 <br/>
 
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

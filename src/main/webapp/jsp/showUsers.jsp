@@ -1,4 +1,4 @@
-<%@ page import="com.java.lesson.restaurant.reservation.dto.UserDto" %>
+<%@ page import="com.java.lesson.restaurant.reservation.dto.User" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
@@ -16,12 +16,12 @@
     <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 <div style="text-align: center">
     <p>USERS DATA</p>
 </div>
 <%
-    List<UserDto> users = (List<UserDto>) request.getAttribute("users");
+    List<User> users = (List<User>) request.getAttribute("users");
 %>
 <table border="1" align="center"  style="border: solid 1px black; align-content: center; " bgcolor="#EBF1F4">
     <tr>
@@ -35,7 +35,7 @@
         <th>Phone number</th>
     </tr>
     <%
-        for (UserDto user: users) {
+        for (User user: users) {
     %>
     <tr>
         <td><%=user.getId()%></td>
@@ -59,6 +59,6 @@
 </form>
 <br/><a href="/index.jsp">main page</a>
 <br/>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

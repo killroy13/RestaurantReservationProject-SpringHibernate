@@ -1,4 +1,4 @@
-<%@ page import="com.java.lesson.restaurant.reservation.dto.RestaurantDto" %>
+<%@ page import="com.java.lesson.restaurant.reservation.dto.Restaurant" %>
 <%@ page import="java.util.List" %>
 <%--<%@ page import="com.java.lesson.restaurant.reservation.dto.RestaurantDtoDto" %>--%>
 <%--<%@ page import="java.util.List" %>--%>
@@ -16,12 +16,12 @@
   <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 <div style="text-align: center">
   <p>RESTAURANTS DATA</p>
 </div>
 <%
-  List<RestaurantDto> restaurants = (List<RestaurantDto>) request.getAttribute("restaurants");
+  List<Restaurant> restaurants = (List<Restaurant>) request.getAttribute("restaurants");
 %>
 <table border="1" align="center"  style="border: solid 1px black; align-content: center; " bgcolor="#EBF1F4">
   <tr>
@@ -36,7 +36,7 @@
     <th>Photo</th>
   </tr>
   <%
-    for (RestaurantDto restaurant: restaurants) {
+    for (Restaurant restaurant: restaurants) {
   %>
   <tr>
     <td><%=restaurant.getId()%></td>
@@ -61,6 +61,6 @@
 </form>
 <br/><a href="/index.jsp">main page</a>
 <br/>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

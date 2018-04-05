@@ -12,7 +12,7 @@
   <title>Restaurant Reservation</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 
 <div style="align-content: center">
   <p>SUCCESSFUL! Advertisement <%=request.getAttribute("id")%> is removed</p>
@@ -24,6 +24,6 @@
 <br/><a href="/index.jsp">main page</a>
 <br/>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
