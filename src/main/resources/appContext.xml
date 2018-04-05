@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <context:component-scan base-package="com.java.lesson.restaurant.reservation.dao"/>
+
+
+    <!--/chuh/-->
+
+    <!--<bean id="aspect-profiler" class="com.java.lesson.restaurant.reservation.notUse.aspect.SimpleProfiler"/>-->
+    <!--<bean id="aspect-logger" class="com.java.lesson.restaurant.reservation.notUse.aspect."/>-->
+    <!--<bean id="aspect-exception-logger" class="com.java.lesson.restaurant.reservation.notUse.aspect."/>-->
+    <!--<aop:config>-->
+        <!--<aop:aspect ref="aspect-profiler">-->
+            <!--<aop:pointcut id="selectById"-->
+                          <!--expression="execution(* eshop.dao.ProductDao.selectById(int)) and args(id)"/>-->
+            <!--<aop:around pointcut-ref="selectById"-->
+                        <!--method="profile"/>-->
+        <!--</aop:aspect>-->
+
+        <!--<aop:aspect ref="aspect-logger">-->
+            <!--<aop:pointcut id="any-dao-methods"-->
+                          <!--expression="execution(* eshop.dao.ProductDao.*(..))"/>-->
+            <!--<aop:around pointcut-ref="any-dao-methods"-->
+                        <!--method="log"/>-->
+        <!--</aop:aspect>-->
+
+        <!--<aop:aspect ref="aspect-exception-logger">-->
+            <!--<aop:pointcut id="any-public-methods"-->
+                          <!--expression="execution(public * *(..))"/>-->
+            <!--<aop:after-throwing pointcut-ref="any-dao-methods"-->
+                                <!--method="logException" throwing="t"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+
+    <!--/***********/-->
+
+    <!--<bean id="user" class="com.java.lesson.restaurant.reservation.dto.User" scope="prototype">-->
+        <!--<constructor-arg name="f_name" value="WWW"/>-->
+        <!--<constructor-arg name="s_name" value="SSSS"/>-->
+        <!--<constructor-arg name="birth_day" value="12"/>-->
+        <!--<constructor-arg name="e_mail" value="de@d"/>-->
+        <!--<constructor-arg name="id" value="1"/>-->
+        <!--<constructor-arg name="login" value="llll"/>-->
+        <!--<constructor-arg name="password" value="paasss"/>-->
+        <!--<constructor-arg name="phone" value="123"/>-->
+    <!--</bean>-->
+
+
+    <bean id="usersDao" class="com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl" scope="prototype"/>
+    <bean id="restaurantsDao" class="com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl" scope="prototype"/>
+    <bean id="advertisementsDao" class="com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl" scope="prototype"/>
+    <bean id="ordersDao" class="com.java.lesson.restaurant.reservation.dao.impl.OrdersDaoImpl" scope="prototype"/>
+
+</beans>
