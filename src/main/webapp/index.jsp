@@ -1,4 +1,3 @@
-<%@ page import="com.java.lesson.restaurant.reservation.notUse.servletss.BaseContact" %>
 <%@ page import="java.sql.Connection" %>
 <%--
   Created by IntelliJ IDEA.
@@ -16,8 +15,8 @@
 </head>
 <body>
 <div>
-    <jsp:include page="jsp/header.jsp"></jsp:include>
-    <jsp:include page="jsp/adminPanel.jsp"></jsp:include>
+    <jsp:include page="jsp/header.jsp"/>
+    <jsp:include page="jsp/adminPanel.jsp"/>
 </div>
 
 <div id="" style="display: block;
@@ -44,7 +43,7 @@
 
 <div style="display: block;
     ">
-    <jsp:include page="jsp/footer.jsp"></jsp:include>
+    <jsp:include page="jsp/footer.jsp"/>
 </div>
 
 </body>
