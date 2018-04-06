@@ -10,10 +10,9 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
     <context:component-scan base-package="com.java.lesson.restaurant.reservation"/>
 
-
-    <bean id="usersDao" class="com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl" scope="prototype"/>
-    <bean id="restaurantsDao" class="com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl" scope="prototype"/>
-    <bean id="advertisementsDao" class="com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl" scope="prototype"/>
-    <bean id="ordersDao" class="com.java.lesson.restaurant.reservation.dao.impl.OrdersDaoImpl" scope="prototype"/>
+    <!--<bean id="usersDao" class="com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl" scope="prototype"/>-->
+    <!--<bean id="restaurantsDao" class="com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl" scope="prototype"/>-->
+    <!--<bean id="advertisementsDao" class="com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl" scope="prototype"/>-->
+    <!--<bean id="ordersDao" class="com.java.lesson.restaurant.reservation.dao.impl.OrdersDaoImpl" scope="prototype"/>-->
 
 </beans>
