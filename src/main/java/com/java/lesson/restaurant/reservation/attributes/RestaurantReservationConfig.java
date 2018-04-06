@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.java.lesson.restaurant.reservation")
 public class RestaurantReservationConfig {
 
-    @Bean(name = "userDao")
+    @Bean/*(name = "userDao")*/
     public UsersDaoImpl usersDao() throws DaoException {
         return new UsersDaoImpl();
     }
