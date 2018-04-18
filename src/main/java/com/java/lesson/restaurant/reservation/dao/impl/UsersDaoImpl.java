@@ -20,7 +20,7 @@ import java.util.List;
  * Created by UserDto on 03.03.2018.
  */
 
-@Repository
+@Repository("usersDaoImpl ")
 //@Component("usersDao")
 public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
 
@@ -29,7 +29,6 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
 
     public UsersDaoImpl() throws DaoException {
     }
-
 
 
     @Override
@@ -160,24 +159,30 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
 
     @Override
     public User getById(int id) throws DaoException {
-        User user = null;
+        Session session = sessionFactory.getCurrentSession();
+
+//        User user = null;
+        User user;
         try {
-            PreparedStatement preparedStatement = getPreparedStatement(selectByIdQuery());
-            preparedStatementForSelectById(preparedStatement, id);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    user = new User();
-                    user.setId(resultSet.getInt(1));
-                    user.setfName(resultSet.getString(2));
-                    user.setsName(resultSet.getString(3));
-                    user.setBirthDate(resultSet.getString(4));
-                    user.setLogin(resultSet.getString(5));
-                    user.setPassword(resultSet.getString(6));
-                    user.seteMail(resultSet.getString(7));
-                    user.setPhone(resultSet.getString(8));
-                }
-            }
-        } catch (SQLException e) {
+
+            user = session.get(User.class, id);
+
+//            PreparedStatement preparedStatement = getPreparedStatement(selectByIdQuery());
+//            preparedStatementForSelectById(preparedStatement, id);
+//            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+//                while (resultSet.next()) {
+//                    user = new User();
+//                    user.setId(resultSet.getInt(1));
+//                    user.setfName(resultSet.getString(2));
+//                    user.setsName(resultSet.getString(3));
+//                    user.setBirthDate(resultSet.getString(4));
+//                    user.setLogin(resultSet.getString(5));
+//                    user.setPassword(resultSet.getString(6));
+//                    user.seteMail(resultSet.getString(7));
+//                    user.setPhone(resultSet.getString(8));
+//                }
+//            }
+        } catch (/*SQLException */Exception e) {
             throw new DaoException("Error in getById method", e);
         }
         if (user == null) {
@@ -190,26 +195,39 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     //TODO логином может выступать email
     @Override
     public User getByLoginAndPassword(String login, String password) throws DaoException, NoSuchEntityException {
-        User user = null;
+        Session session = sessionFactory.getCurrentSession();
+
+//        User user = null;
+
+        User user;
         try {
-            PreparedStatement preparedStatement = getPreparedStatement(selectByLoginQueryAndPassword());
-            preparedStatementForSelectByLoginAndPassword(preparedStatement, login, password);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-//                    if (){
-                    user = new User();
-                    user.setId(resultSet.getInt(1));
-                    user.setfName(resultSet.getString(2));
-                    user.setsName(resultSet.getString(3));
-                    user.setBirthDate(resultSet.getString(4));
-                    user.setLogin(resultSet.getString(5));
-                    user.setPassword(resultSet.getString(6));
-                    user.seteMail(resultSet.getString(7));
-                    user.setPhone(resultSet.getString(8));
-//                    }
-                }
-            }
-        } catch (SQLException e) {
+
+//            List<User> result;
+//
+//            Query query = session.createQuery("from User where login=" + login + " and password=" + password);
+            user = (User) session.createQuery("from User where login=" + login + " and password=" + password).getSingleResult();
+//            user = (User) query.getSingleResult();
+
+//            user = result;
+
+//            PreparedStatement preparedStatement = getPreparedStatement(selectByLoginQueryAndPassword());
+//            preparedStatementForSelectByLoginAndPassword(preparedStatement, login, password);
+//            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+//                while (resultSet.next()) {
+// //                   if (){
+//                    user = new User();
+//                    user.setId(resultSet.getInt(1));
+//                    user.setfName(resultSet.getString(2));
+//                    user.setsName(resultSet.getString(3));
+//                    user.setBirthDate(resultSet.getString(4));
+//                    user.setLogin(resultSet.getString(5));
+//                    user.setPassword(resultSet.getString(6));
+//                    user.seteMail(resultSet.getString(7));
+//                    user.setPhone(resultSet.getString(8));
+// //                   }
+//                }
+//            }
+        } catch (/*SQLException*/Exception e) {
             throw new DaoException("Error in getByLoginAndPassword method", e);
         }
         if (user == null) {
@@ -221,33 +239,47 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
 
     @Override
     public void insert(User user) throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            PreparedStatement ps = getPreparedStatement(insertQuery());
-            preparedStatementForInsert(ps, user);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+
+            session.save(user);
+
+//            PreparedStatement ps = getPreparedStatement(insertQuery());
+//            preparedStatementForInsert(ps, user);
+//            ps.executeUpdate();
+
+        } catch (/*SQLException */ Exception e) {
             throw new DaoException("Error in insert method", e);
         }
     }
 
     @Override
     public void update(User user) throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            PreparedStatement ps = getPreparedStatement(updateQuery());
-            preparedStatementForUpdate(ps, user);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+
+            session.saveOrUpdate(user);
+
+//            PreparedStatement ps = getPreparedStatement(updateQuery());
+//            preparedStatementForUpdate(ps, user);
+//            ps.executeUpdate();
+        } catch (/*SQLException*/Exception e) {
             throw new DaoException("Error in update method", e);
         }
     }
 
     @Override
     public void delete(int id) throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            PreparedStatement ps = getPreparedStatement(deleteQuery());
-            preparedStatementForSelectById(ps, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+
+            User user = session.get(User.class, id);
+            session.delete(user);
+
+//            PreparedStatement ps = getPreparedStatement(deleteQuery());
+//            preparedStatementForSelectById(ps, id);
+//            ps.executeUpdate();
+        } catch (/*SQLException*/ Exception e) {
             throw new DaoException("Error in delete method", e);
         }
     }

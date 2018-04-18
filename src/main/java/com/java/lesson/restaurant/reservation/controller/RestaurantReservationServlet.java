@@ -4,11 +4,10 @@ import com.java.lesson.restaurant.reservation.attributes.RestaurantReservationAt
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
-import com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl;
 import com.java.lesson.restaurant.reservation.dto.Advertisement;
 import com.java.lesson.restaurant.reservation.dto.Restaurant;
 import com.java.lesson.restaurant.reservation.dto.User;
-import com.java.lesson.restaurant.reservation.service.impl.UsersServiceImpl;
+import com.java.lesson.restaurant.reservation.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -31,8 +30,8 @@ import static com.java.lesson.restaurant.reservation.attributes.RestaurantReserv
 public class RestaurantReservationServlet extends HttpServlet {
 
 
-    @Autowired
-    private UsersDaoImpl usersDao;
+//    @Autowired
+//    private UsersDaoImpl usersDao;
 
     @Autowired
     private RestaurantsDaoImpl restaurantsDao;
@@ -40,16 +39,12 @@ public class RestaurantReservationServlet extends HttpServlet {
     @Autowired
     private AdvertisementsDaoImpl advertisementsDao;
 
-
     @Autowired
-    private UsersServiceImpl usersService;
+    private UsersService usersService;
 
 
     public void init() throws ServletException {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-
-//        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
-
     }
 
     public static RestaurantReservationAttributes attributes = new RestaurantReservationAttributes();
@@ -95,7 +90,6 @@ public class RestaurantReservationServlet extends HttpServlet {
             } else if (request.getParameter("deleteRestaurant") != null) {
                 link = deleteRestaurant(request);
 
-
             } else if (request.getParameter("showAdvertisements") != null) {
                 link = showAdvertisements(request);
             }else if (request.getParameter("showAdvertisementById") != null) {
@@ -114,8 +108,6 @@ public class RestaurantReservationServlet extends HttpServlet {
             throw new ServletException(e);
         }
     }
-
-
 
 
     /**
@@ -195,7 +187,9 @@ public class RestaurantReservationServlet extends HttpServlet {
                 user.seteMail(eMail);
                 user.setPhone(phone);
 
-                usersDao.update(user);
+//                usersDao.update(user);
+
+                usersService.update(user);
 
                 request.setAttribute("id", id);
                 request.setAttribute("fName", fName);
@@ -241,11 +235,7 @@ public class RestaurantReservationServlet extends HttpServlet {
     protected String insertUser(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-//            User user = (User) session.getAttribute(USER_DTO);
-
-
             User user = new User();
-
 
             String fName = request.getParameter(FIRST_NAME);
             String sName = request.getParameter(SECOND_NAME);
@@ -264,7 +254,10 @@ public class RestaurantReservationServlet extends HttpServlet {
                 user.setPassword(password);
                 user.seteMail(eMail);
                 user.setPhone(phone);
-                usersDao.insert(user);
+//                usersDao.insert(user);
+
+                usersService.insert(user);
+
                 request.setAttribute("fName", fName);
                 request.setAttribute("sName", sName);
                 request.setAttribute("birthDate", birthDate);
@@ -310,7 +303,10 @@ public class RestaurantReservationServlet extends HttpServlet {
             String id = request.getParameter("idForDelete");
             if (attributes.validId(id).isEmpty()) {
                 request.setAttribute("id", id);
-                usersDao.delete(Integer.parseInt(id));
+//                usersDao.delete(Integer.parseInt(id));
+
+                usersService.delete(Integer.parseInt(id));
+
                 link = SUCCESS_DELETE_USER_PAGE;
             } else {
                 request.setAttribute("userId", id);
@@ -347,7 +343,9 @@ public class RestaurantReservationServlet extends HttpServlet {
             HashMap<String, String> dataErrorMap = attributes.validateLoginUser(login, password);
 
             if (dataErrorMap.isEmpty()) {
-                User user = usersDao.getByLoginAndPassword(login, password);
+//                User user = usersDao.getByLoginAndPassword(login, password);
+
+                User user = usersService.getByLoginAndPassword(login, password);
 
                 session.setAttribute("name", user.getfName());
                 session.setAttribute("sName", user.getsName());

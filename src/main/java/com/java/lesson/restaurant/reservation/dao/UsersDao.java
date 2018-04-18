@@ -10,8 +10,8 @@ import java.util.List;
  * Created by UserDto on 02.03.2018.
  */
 public interface UsersDao extends GenericDao<User> {
-    List<User> getAll() throws DaoException;
 
+    List<User> getAll() throws DaoException;
 
     //TODO NoSuchEntity
     /**
