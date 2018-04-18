@@ -4,6 +4,8 @@ import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.RestaurantsDaoImpl;
 import com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl;
+import com.java.lesson.restaurant.reservation.dto.Advertisement;
+import com.java.lesson.restaurant.reservation.dto.Restaurant;
 import com.java.lesson.restaurant.reservation.dto.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +87,7 @@ public class RestaurantReservationConfig {
         properties.put("spring.jpa.properties.hibernate.current_session_context_class", env.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
 
         factoryBean.setHibernateProperties(properties);
-        factoryBean.setAnnotatedClasses(User.class);
+        factoryBean.setAnnotatedClasses(User.class, Restaurant.class, Advertisement.class);
         return factoryBean;
     }
 

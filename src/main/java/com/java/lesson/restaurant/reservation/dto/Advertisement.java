@@ -1,17 +1,37 @@
 package com.java.lesson.restaurant.reservation.dto;
 
-import org.springframework.stereotype.Repository;
+import javax.persistence.*;
 
 /**
  * Created by UserDto on 02.03.2018.
+ *
  * @author Igor Iv.
  */
-@Repository
-public class Advertisement extends Model {
+@Entity
+@Table(name = "advertisements")
+public class Advertisement {
+
+    @Id
+    @Column(name = "advertisement_id", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
+    @Column(name = "adv_text", nullable = false, insertable = true, updatable = true)
     String offerText;
+
+    @Column(name = "restaurant_id", nullable = false, insertable = true, updatable = true)
     int restaurantId;
 
-    public Advertisement(){}
+    public Advertisement() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getOfferText() {
         return offerText;

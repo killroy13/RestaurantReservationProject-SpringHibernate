@@ -3,9 +3,11 @@ package com.java.lesson.restaurant.reservation.dao.impl;
 import com.java.lesson.restaurant.reservation.dao.AbstractMySQLDao;
 import com.java.lesson.restaurant.reservation.dao.AdvertisementsDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
-import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
 import com.java.lesson.restaurant.reservation.dto.Advertisement;
-import org.springframework.stereotype.Component;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +18,13 @@ import java.util.List;
 /**
  * Created by UserDto on 21.03.2018.
  */
-//@Repository
-    @Component("advertisementsDao")
+
+@Repository("advertisementsDao")
 public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> implements AdvertisementsDao {
+
+    @Autowired
+    SessionFactory sessionFactory;
+
     public AdvertisementsDaoImpl() throws DaoException {
     }
 
@@ -87,13 +93,11 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
 
     @Override
     public List<Advertisement> getAll() throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         List<Advertisement> result;
         try {
-            PreparedStatement ps = getPreparedStatement(selectQuery());
-            try (ResultSet rs = ps.executeQuery()) {
-                result = parseResultSet(rs);
-            }
-        } catch (SQLException e) {
+            result = session.createQuery("from Advertisement order by id").list();
+        } catch (Exception e) {
             throw new DaoException("Error in getAll method", e);
         }
         return result;
@@ -101,57 +105,44 @@ public class AdvertisementsDaoImpl extends AbstractMySQLDao<Advertisement> imple
 
     @Override
     public Advertisement getById(int id) throws DaoException {
-        Advertisement advertisement = null;
+        Session session = sessionFactory.getCurrentSession();
+        Advertisement advertisement;
         try {
-            PreparedStatement ps = getPreparedStatement(selectByIdQuery());
-            preparedStatementForSelectById(ps, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    advertisement = new Advertisement();
-                    advertisement.setId(rs.getInt(1));
-                    advertisement.setOfferText(rs.getString(2));
-                    advertisement.setRestaurantId(rs.getInt(3));
-                }
-            }
-        } catch (SQLException e) {
+            advertisement = session.get(Advertisement.class, id);
+        } catch (Exception e) {
             throw new DaoException("Error in getById method", e);
         }
-        if (advertisement == null) {
-            throw new NoSuchEntityException("No RestaurantDto for id = '" + id + "' ");
-        } else {
-            return advertisement;
-        }
+        return advertisement;
     }
 
     @Override
     public void insert(Advertisement advertisement) throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            PreparedStatement ps = getPreparedStatement(insertQuery());
-            preparedStatementForInsert(ps, advertisement);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+            session.save(advertisement);
+        } catch (Exception e) {
             throw new DaoException("Error in insert method", e);
         }
     }
 
+    //TODO рассмотреть возможность изменения (необходима ли функция??)
     @Override
     public void update(Advertisement advertisement) throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            PreparedStatement ps = getPreparedStatement(updateQuery());
-            preparedStatementForUpdate(ps, advertisement);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+            session.saveOrUpdate(advertisement);
+        } catch (Exception e) {
             throw new DaoException("Error in update method", e);
         }
     }
 
     @Override
     public void delete(int id) throws DaoException {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            PreparedStatement ps = getPreparedStatement(deleteQuery());
-            preparedStatementForSelectById(ps, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+            Advertisement advertisement = session.get(Advertisement.class, id);
+            session.delete(advertisement);
+        } catch (Exception e) {
             throw new DaoException("Error in delete method", e);
         }
     }

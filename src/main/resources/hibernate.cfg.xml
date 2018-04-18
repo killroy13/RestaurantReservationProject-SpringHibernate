@@ -31,6 +31,8 @@
 
         <!-- ENTITY mapping  -->
         <mapping class="com.java.lesson.restaurant.reservation.dto.User"/>
+        <mapping class="com.java.lesson.restaurant.reservation.dto.Restaurant"/>
+        <mapping class="com.java.lesson.restaurant.reservation.dto.Advertisement"/>
         <!--<mapping class="com."/>-->
 
 
