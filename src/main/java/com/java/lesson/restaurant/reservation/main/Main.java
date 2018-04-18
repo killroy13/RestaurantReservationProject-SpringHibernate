@@ -1,3 +1,5 @@
+package com.java.lesson.restaurant.reservation.main;
+
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 
 /**

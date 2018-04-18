@@ -5,6 +5,8 @@ package com.java.lesson.restaurant.reservation.dto;
  * @author Igor Iv.
  */
 public class Model {
+
+//    @Id
     int id;
 
     public int getId() {

@@ -8,6 +8,7 @@ import com.java.lesson.restaurant.reservation.dao.impl.UsersDaoImpl;
 import com.java.lesson.restaurant.reservation.dto.Advertisement;
 import com.java.lesson.restaurant.reservation.dto.Restaurant;
 import com.java.lesson.restaurant.reservation.dto.User;
+import com.java.lesson.restaurant.reservation.service.impl.UsersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -26,7 +27,6 @@ import static com.java.lesson.restaurant.reservation.attributes.RestaurantReserv
  * Created by UserDto on 02.03.2018.
  * @author Igor Iv
  */
-
 @WebServlet(name = "RestaurantReservationServlet", urlPatterns = "/users")
 public class RestaurantReservationServlet extends HttpServlet {
 
@@ -40,8 +40,16 @@ public class RestaurantReservationServlet extends HttpServlet {
     @Autowired
     private AdvertisementsDaoImpl advertisementsDao;
 
+
+    @Autowired
+    private UsersServiceImpl usersService;
+
+
     public void init() throws ServletException {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+
+//        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+
     }
 
     public static RestaurantReservationAttributes attributes = new RestaurantReservationAttributes();
@@ -117,7 +125,12 @@ public class RestaurantReservationServlet extends HttpServlet {
     protected String showUsers(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-            request.setAttribute(USER_DTO, usersDao.getAll());
+//            request.setAttribute(USER_DTO, usersDao.getAll());
+
+
+            request.setAttribute(USER_DTO, usersService.getAll());
+
+
             link = SHOW_ALL_USERS_PAGE;
         } catch (DaoException e) {
             e.printStackTrace();
@@ -135,7 +148,9 @@ public class RestaurantReservationServlet extends HttpServlet {
             if (attributes.validId(idStr).isEmpty()) {
                 Integer id = Integer.valueOf(idStr);
 
-                User user = usersDao.getById(id);
+//                User user = usersDao.getById(id);
+
+                User user = usersService.getById(id);
 
                 request.setAttribute(USER_MODEL_TO_VIEW, user);
                 link = USER_PAGE;

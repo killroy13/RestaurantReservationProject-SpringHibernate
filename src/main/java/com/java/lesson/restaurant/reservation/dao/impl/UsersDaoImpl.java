@@ -5,7 +5,10 @@ import com.java.lesson.restaurant.reservation.dao.UsersDao;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
 import com.java.lesson.restaurant.reservation.dao.exception.NoSuchEntityException;
 import com.java.lesson.restaurant.reservation.dto.User;
-import org.springframework.stereotype.Component;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,13 +20,17 @@ import java.util.List;
  * Created by UserDto on 03.03.2018.
  */
 
-//@Repository
-//    @Service
-    @Component("usersDao")
+@Repository
+//@Component("usersDao")
 public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
+
+    @Autowired
+    private SessionFactory sessionFactory;
 
     public UsersDaoImpl() throws DaoException {
     }
+
+
 
     @Override
     protected String selectQuery() {
@@ -135,12 +142,17 @@ public class UsersDaoImpl extends AbstractMySQLDao<User> implements UsersDao {
     @Override
     public List<User> getAll() throws DaoException {
         List<User> result;
+        Session session = sessionFactory.getCurrentSession();
+
         try {
-            PreparedStatement preparedStatement = getPreparedStatement(selectQuery());
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                result = parseResultSet(rs);
-            }
-        } catch (SQLException e) {
+
+            result = session.createQuery("from User order by id").list();
+
+//            PreparedStatement preparedStatement = getPreparedStatement(selectQuery());
+//            try (ResultSet rs = preparedStatement.executeQuery()) {
+//                result = parseResultSet(rs);
+//            }
+        } catch (/*SQLException  */Exception e) {
             throw new DaoException("Error in getAll method", e);
         }
         return result;
