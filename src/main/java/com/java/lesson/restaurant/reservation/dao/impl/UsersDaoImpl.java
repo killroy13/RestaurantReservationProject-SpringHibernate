@@ -14,10 +14,11 @@ import java.util.List;
 
 /**
  * Created by UserDto on 03.03.2018.
+ *
  */
 
 @Repository("usersDaoImpl")
-public class UsersDaoImpl /*extends AbstractMySQLDao<User> */implements UsersDao {
+public class UsersDaoImpl implements UsersDao {
 
     @Autowired
     private SessionFactory sessionFactory;

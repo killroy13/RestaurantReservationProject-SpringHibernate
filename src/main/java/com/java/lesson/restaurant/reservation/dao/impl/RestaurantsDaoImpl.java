@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Repository("restaurantsDaoImpl")
-public class RestaurantsDaoImpl /*extends AbstractMySQLDao<Restaurant>*/ implements RestaurantsDao {
+public class RestaurantsDaoImpl implements RestaurantsDao {
 
     @Autowired
     private SessionFactory sessionFactory;
