@@ -44,6 +44,10 @@
     </session-config>
     <!--**********************************************-->
 
+    <!--   WELCOME list   -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
     <!--ERROR-->
     <error-page>

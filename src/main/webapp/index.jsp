@@ -1,7 +1,6 @@
 <%@ page import="java.sql.Connection" %>
 <%--
   Created by IntelliJ IDEA.
-  UserDto: UserDto
   Date: 08.02.2018
   Time: 21:41
   To change this template use File | Settings | File Templates.
@@ -39,6 +38,15 @@
         width: 269px;">
     </div>
 </div>
+
+<%--FOR script.js--%>
+<%--<form id="hello">--%>
+    <%--<input type="text" id="name">--%>
+    <%--<input id="btthello" type="button" value="Отправить">--%>
+
+    <%--&lt;%&ndash;<div id="result"></div>&ndash;%&gt;--%>
+    <%--<script src="../js/javascript.js"></script>--%>
+<%--</form>--%>
 
 
 <div style="display: block;

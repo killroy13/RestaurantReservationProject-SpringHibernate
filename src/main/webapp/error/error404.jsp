@@ -13,7 +13,7 @@
 <body>
 <div align="center" style="padding: 100px;">
 
-    <p><a href="/index.jsp">com.java.lesson.restaurant.reservation.main.Main page</a></p>
+    <p><a href="/index.jsp">Home page</a></p>
 
     <p align="center">Page Not Found Error. 404.</p>
 </div>

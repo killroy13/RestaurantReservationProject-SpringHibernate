@@ -11,24 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Форма входа в систему</title>
 
-    <%--<script>--%>
-        <%--function validate()--%>
-        <%--{--%>
-            <%--var username = document.form.login.value;--%>
-            <%--var password = document.form.password.value;--%>
 
-            <%--if (username==null || username=="")--%>
-            <%--{--%>
-                <%--alert("Username cannot be blank");--%>
-                <%--return false;--%>
-            <%--}--%>
-            <%--else if(password==null || password=="")--%>
-            <%--{--%>
-                <%--alert("Password cannot be blank");--%>
-                <%--return false;--%>
-            <%--}--%>
-        <%--}--%>
-    <%--</script>--%>
+
 
 </head>
 <body>
@@ -41,6 +25,7 @@
     Password:<label>
     <input type="password" name="password" size="10">
 </label><br/>
+
     <p>
     <table>
         <tr>
@@ -58,7 +43,8 @@
     </table>
     <%--</p>--%>
 </form>
+
 <br/>
-<jsp:include page="/jsp/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/footer.jsp"/>
 </body>
 </html>

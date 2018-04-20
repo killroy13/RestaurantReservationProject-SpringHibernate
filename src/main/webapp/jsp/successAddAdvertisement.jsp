@@ -15,6 +15,7 @@
 <jsp:include page="header.jsp"/>
 <div style="align-content: center">
   <p>SUCCESSFUL! Offer of <%=request.getAttribute("restaurantId")%> is added</p>
+  <p>Text Offer: <%=request.getAttribute("offerText")%> </p>
 </div>
 
 <br/>

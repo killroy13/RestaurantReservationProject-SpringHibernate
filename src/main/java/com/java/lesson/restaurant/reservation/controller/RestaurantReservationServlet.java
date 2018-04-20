@@ -59,7 +59,7 @@ public class RestaurantReservationServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html; charset=windows-1251");
-        String link;
+        String link = null;
         try {
 
             HttpSession session = request.getSession(false);
@@ -94,14 +94,30 @@ public class RestaurantReservationServlet extends HttpServlet {
                 link = showAdvertisements(request);
             }else if (request.getParameter("showAdvertisementById") != null) {
                 link = showAdvertisementById(request);
+
+
+
             }else if (request.getParameter("addAdvertisement") != null) {
                 link = addAdvertisement(request);
+
+//            }else if (request.getParameter("addAdvertisementAjax") != null) {
+//                addAdvertisementAjax(request);
+
+
             }else if (request.getParameter("deleteAdvertisement") != null) {
                 link = deleteAdvertisement(request);
+
+            }else if (request.getParameter("deleteAdvertisementAjax") != null) {
+                deleteAdvertisementAjax(request);
+
+
+
             } else {
                 link = ERROR_PAGE;
             }
+//            if (link != null){
             request.getRequestDispatcher(link).forward(request, response);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", e);
@@ -643,6 +659,34 @@ public class RestaurantReservationServlet extends HttpServlet {
         }
         return link;
     }
+//
+//
+//    protected void addAdvertisementAjax (HttpServletRequest request)throws ServletException, IOException{
+//        try {
+//            Advertisement advertisement = new Advertisement();
+//            String offerText = request.getParameter(ADVERTISEMENT_TEXT);
+//            String restaurantId = request.getParameter(ADVERTISEMENT_OF_RESTAURANT_ID);
+//            HashMap<String, String> dataErrorMap = attributes.vaidateInsertAdvertisement(offerText, restaurantId);
+//            if (dataErrorMap.isEmpty()){
+//                advertisement.setOfferText(offerText);
+//                advertisement.setRestaurantId(Integer.valueOf(restaurantId));
+//                advertisementsService.insert(advertisement);
+//                request.setAttribute("offerText", offerText);
+//                request.setAttribute("restaurantId", restaurantId);
+//            }else {
+//                request.setAttribute("offerText", offerText);
+//                request.setAttribute("restaurantId", restaurantId);
+//                request.setAttribute("errorsOfferText", dataErrorMap.get("offerText"));
+//                request.setAttribute("errorsRestaurantId", dataErrorMap.get("id"));
+//                request.setAttribute("nullErrors", "");
+//                request.setAttribute("errors", dataErrorMap);
+//            }
+//        }catch (DaoException e) {
+//            e.printStackTrace();
+//            request.setAttribute("error", e);
+//        }
+//    }
+
 
     //TODO Исправить ошибку с удалением номера которого нет
     protected String deleteAdvertisement(HttpServletRequest request) throws IOException, ServletException{
@@ -666,7 +710,21 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-
+    protected void deleteAdvertisementAjax(HttpServletRequest request) throws IOException, ServletException{
+        try {
+            String id = request.getParameter("advertisementIdForDelete");
+            if(attributes.validId(id).isEmpty()){
+                request.setAttribute("id", id);
+                advertisementsService.delete(Integer.parseInt(id));
+            }else {
+                request.setAttribute("advertisementId", id);
+                request.setAttribute("errors", attributes.validId(id));
+            }
+        }catch (DaoException e) {
+            e.printStackTrace();
+            request.setAttribute("error", e);
+        }
+    }
 
 
 

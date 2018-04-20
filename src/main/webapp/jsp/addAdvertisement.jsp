@@ -15,13 +15,14 @@
 
 <h1>New Offers</h1>
 <form action="/myServlet" method="post">
-  <p> Restaurant offer*: <label><textarea name="offerText" cols="40" rows="10"></textarea></label></p>
-  <p> Restaurant (id)*: <label><input type="text" name="restaurantId" placeholder="id"></label></p>
-  <input type="submit" name="addAdvertisement" value="Add"/>
+    <p> Restaurant offer*: <label><textarea name="offerText" cols="40" rows="10"></textarea></label></p>
+
+    <p> Restaurant (id)*: <label><input type="text" name="restaurantId" placeholder="id"></label></p>
+    <input type="submit" name="addAdvertisement" value="Add"/>
 </form>
 
 <div>
-  <p><a href="/index.jsp">Home</a></p>
+    <p><a href="/index.jsp">Home</a></p>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>
