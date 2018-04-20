@@ -18,7 +18,7 @@ window.onload = function () {
 
     document.querySelector('#deladv').onclick = function () {
 
-        var params = 'id=' + inp_id.value;
+        var params = 'idForDelete=' + inp_id.value;
 
 
 

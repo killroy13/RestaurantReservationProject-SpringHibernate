@@ -712,7 +712,7 @@ public class RestaurantReservationServlet extends HttpServlet {
 
     protected void deleteAdvertisementAjax(HttpServletRequest request) throws IOException, ServletException{
         try {
-            String id = request.getParameter("advertisementIdForDelete");
+            String id = request.getParameter("idForDelete");
             if(attributes.validId(id).isEmpty()){
                 request.setAttribute("id", id);
                 advertisementsService.delete(Integer.parseInt(id));
