@@ -113,8 +113,8 @@ public class RestaurantReservationServlet extends HttpServlet {
 
 
             } else if (request.getParameter("showAdvertisementByIdAjax") != null) {
-
                 showAdvertisementByIdAjax(request, response);
+
 
             } else {
 //                link = ERROR_PAGE;
@@ -303,7 +303,6 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-
     protected String deleteUser(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
@@ -396,7 +395,6 @@ public class RestaurantReservationServlet extends HttpServlet {
         }
         return link;
     }
-
 
     protected String showRestaurantById(HttpServletRequest request) throws IOException, ServletException {
         String link;
@@ -624,6 +622,7 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
+    /* some method for ajax & jQuery*/
     protected void showAdvertisementByIdAjax(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             String idStr = request.getParameter(ADVERTISEMENT_ID);
@@ -696,14 +695,3 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
