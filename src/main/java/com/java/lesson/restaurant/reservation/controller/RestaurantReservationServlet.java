@@ -2,7 +2,6 @@ package com.java.lesson.restaurant.reservation.controller;
 
 import com.java.lesson.restaurant.reservation.attributes.RestaurantReservationAttributes;
 import com.java.lesson.restaurant.reservation.dao.exception.DaoException;
-import com.java.lesson.restaurant.reservation.dao.impl.AdvertisementsDaoImpl;
 import com.java.lesson.restaurant.reservation.dto.Advertisement;
 import com.java.lesson.restaurant.reservation.dto.Restaurant;
 import com.java.lesson.restaurant.reservation.dto.User;
@@ -19,19 +18,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import static com.java.lesson.restaurant.reservation.attributes.RestaurantReservationAttributes.*;
 
 /**
  * Created by UserDto on 02.03.2018.
+ *
  * @author Igor Iv
  */
 @WebServlet(name = "RestaurantReservationServlet", urlPatterns = "/users")
 public class RestaurantReservationServlet extends HttpServlet {
-
-    @Autowired
-    private AdvertisementsDaoImpl advertisementsDao;
 
     @Autowired
     private UsersService usersService;
@@ -41,7 +39,6 @@ public class RestaurantReservationServlet extends HttpServlet {
 
     @Autowired
     private AdvertisementsService advertisementsService;
-
 
     public void init() throws ServletException {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
@@ -57,67 +54,73 @@ public class RestaurantReservationServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    //TODO in  switch/case
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html; charset=windows-1251");
-        String link = null;
+//        String link = null;
         try {
-
             HttpSession session = request.getSession(false);
-
             if (request.getParameter("showUsers") != null) {
-                link = showUsers(request);
+//                link = showUsers(request);
+                request.getRequestDispatcher(showUsers(request)).forward(request, response);
             } else if (request.getParameter("showUserById") != null) {
-                link = showUserById(request);
+//                link = showUserById(request);
+                request.getRequestDispatcher(showUserById(request)).forward(request, response);
             } else if (request.getParameter("updateUser") != null) {
-                link = updateUser(request);
+//                link = updateUser(request);
+                request.getRequestDispatcher(updateUser(request)).forward(request, response);
             } else if (request.getParameter("insertUser") != null) {
-                link = insertUser(request);
+//                link = insertUser(request);
+                request.getRequestDispatcher(insertUser(request)).forward(request, response);
             } else if (request.getParameter("deleteUser") != null) {
-                link = deleteUser(request);
+//                link = deleteUser(request);
+                request.getRequestDispatcher(deleteUser(request)).forward(request, response);
             } else if (request.getParameter("login") != null) {
-                link = userLogin(request);
+//                link = userLogin(request);
+                request.getRequestDispatcher(userLogin(request)).forward(request, response);
             } else if (request.getParameter("logout") != null) {
-                link = userLogout(session);
+//                link = userLogout(session);
+                request.getRequestDispatcher(userLogout(session)).forward(request, response);
 
             } else if (request.getParameter("showRestaurants") != null) {
-                link = showRestaurants(request);
+//                link = showRestaurants(request);
+                request.getRequestDispatcher(showRestaurants(request)).forward(request, response);
             } else if (request.getParameter("showRestaurantById") != null) {
-                link = showRestaurantById(request);
+//                link = showRestaurantById(request);
+                request.getRequestDispatcher(showRestaurantById(request)).forward(request, response);
             } else if (request.getParameter("updateRestaurant") != null) {
-                link = updateRestaurant(request);
+//                link = updateRestaurant(request);
+                request.getRequestDispatcher(updateRestaurant(request)).forward(request, response);
             } else if (request.getParameter("insertRestaurant") != null) {
-                link = insertRestaurant(request);
+//                link = insertRestaurant(request);
+                request.getRequestDispatcher(insertRestaurant(request)).forward(request, response);
             } else if (request.getParameter("deleteRestaurant") != null) {
-                link = deleteRestaurant(request);
+//                link = deleteRestaurant(request);
+                request.getRequestDispatcher(deleteRestaurant(request)).forward(request, response);
 
             } else if (request.getParameter("showAdvertisements") != null) {
-                link = showAdvertisements(request);
-            }else if (request.getParameter("showAdvertisementById") != null) {
-                link = showAdvertisementById(request);
+//                link = showAdvertisements(request);
+                request.getRequestDispatcher(showAdvertisements(request)).forward(request, response);
+            } else if (request.getParameter("showAdvertisementById") != null) {
+//                link = showAdvertisementById(request);
+                request.getRequestDispatcher(showAdvertisementById(request)).forward(request, response);
+            } else if (request.getParameter("addAdvertisement") != null) {
+//                link = addAdvertisement(request);
+                request.getRequestDispatcher(addAdvertisement(request)).forward(request, response);
+            } else if (request.getParameter("deleteAdvertisement") != null) {
+//                link = deleteAdvertisement(request);
+                request.getRequestDispatcher(deleteAdvertisement(request)).forward(request, response);
 
 
+            } else if (request.getParameter("showAdvertisementByIdAjax") != null) {
 
-            }else if (request.getParameter("addAdvertisement") != null) {
-                link = addAdvertisement(request);
-
-//            }else if (request.getParameter("addAdvertisementAjax") != null) {
-//                addAdvertisementAjax(request);
-
-
-            }else if (request.getParameter("deleteAdvertisement") != null) {
-                link = deleteAdvertisement(request);
-
-            }else if (request.getParameter("deleteAdvertisementAjax") != null) {
-                deleteAdvertisementAjax(request);
-
-
+                showAdvertisementByIdAjax(request, response);
 
             } else {
-                link = ERROR_PAGE;
+//                link = ERROR_PAGE;
+                request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
             }
-//            if (link != null){
-            request.getRequestDispatcher(link).forward(request, response);
-//            }
+//            request.getRequestDispatcher(link).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", e);
@@ -134,7 +137,6 @@ public class RestaurantReservationServlet extends HttpServlet {
         String link;
         try {
             request.setAttribute(USER_DTO, usersService.getAll());
-
             link = SHOW_ALL_USERS_PAGE;
         } catch (DaoException e) {
             e.printStackTrace();
@@ -173,9 +175,7 @@ public class RestaurantReservationServlet extends HttpServlet {
     protected String updateUser(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
-
             User user = new User();
-
             String id = request.getParameter(ID);
             String fName = request.getParameter(FIRST_NAME);
             String sName = request.getParameter(SECOND_NAME);
@@ -387,10 +387,7 @@ public class RestaurantReservationServlet extends HttpServlet {
     protected String showRestaurants(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
-//            request.setAttribute(RESTAURANT_DTO, restaurantsDao.getAll());
-
             request.setAttribute(RESTAURANT_DTO, restaurantsService.getAll());
-
             link = SHOW_ALL_RESTAURANTS_PAGE;
         } catch (DaoException e) {
             e.printStackTrace();
@@ -495,8 +492,6 @@ public class RestaurantReservationServlet extends HttpServlet {
         }
         return link;
     }
-
-
 
 
     //TODO Доделать формат для фото
@@ -607,21 +602,21 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-    protected String showAdvertisementById(HttpServletRequest request) throws IOException, ServletException{
+    protected String showAdvertisementById(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
             String idStr = request.getParameter(ADVERTISEMENT_ID);
-            if (attributes.validId(idStr).isEmpty()){
+            if (attributes.validId(idStr).isEmpty()) {
                 Integer id = Integer.valueOf(idStr);
                 Advertisement advertisement = advertisementsService.getById(id);
                 request.setAttribute(ADVERTISEMENT_MODEL_TO_VIEW, advertisement);
                 link = ADVERTISEMENT_PAGE;
-            }else {
+            } else {
                 request.setAttribute("advertisementId", idStr);
                 request.setAttribute("errors", attributes.validId(idStr));
                 link = ERROR_PAGE;
             }
-        }catch (DaoException e) {
+        } catch (DaoException e) {
             e.printStackTrace();
             request.setAttribute("error", e);
             link = ERROR_PAGE;
@@ -629,21 +624,40 @@ public class RestaurantReservationServlet extends HttpServlet {
         return link;
     }
 
-    protected String addAdvertisement (HttpServletRequest request)throws ServletException, IOException{
+    protected void showAdvertisementByIdAjax(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            String idStr = request.getParameter(ADVERTISEMENT_ID);
+            Integer id = Integer.valueOf(idStr);
+            Advertisement advertisement = advertisementsService.getById(id);
+            PrintWriter out = response.getWriter();
+            if (advertisement != null) {
+                out.println("#: " + advertisement.getId() + "</br>");
+                out.println("Restaurants Offer: " + advertisement.getOfferText() + "</br>");
+                out.println("Restaurant id: " + advertisement.getRestaurantId() + "</br>");
+            } else {
+                out.println("Data is empty");
+            }
+        } catch (DaoException e) {
+            e.printStackTrace();
+            request.setAttribute("error", e);
+        }
+    }
+
+    protected String addAdvertisement(HttpServletRequest request) throws ServletException, IOException {
         String link;
         try {
             Advertisement advertisement = new Advertisement();
             String offerText = request.getParameter(ADVERTISEMENT_TEXT);
             String restaurantId = request.getParameter(ADVERTISEMENT_OF_RESTAURANT_ID);
             HashMap<String, String> dataErrorMap = attributes.vaidateInsertAdvertisement(offerText, restaurantId);
-            if (dataErrorMap.isEmpty()){
+            if (dataErrorMap.isEmpty()) {
                 advertisement.setOfferText(offerText);
                 advertisement.setRestaurantId(Integer.valueOf(restaurantId));
                 advertisementsService.insert(advertisement);
                 request.setAttribute("offerText", offerText);
                 request.setAttribute("restaurantId", restaurantId);
                 link = ADD_ADVERTISEMENT_SUCCESS_PAGE;
-            }else {
+            } else {
                 request.setAttribute("offerText", offerText);
                 request.setAttribute("restaurantId", restaurantId);
                 request.setAttribute("errorsOfferText", dataErrorMap.get("offerText"));
@@ -652,82 +666,35 @@ public class RestaurantReservationServlet extends HttpServlet {
                 request.setAttribute("errors", dataErrorMap);
                 link = RE_ADD_ADVERTISEMENT_PAGE;
             }
-        }catch (DaoException e) {
+        } catch (DaoException e) {
             e.printStackTrace();
             request.setAttribute("error", e);
             link = ERROR_PAGE;
         }
         return link;
     }
-//
-//
-//    protected void addAdvertisementAjax (HttpServletRequest request)throws ServletException, IOException{
-//        try {
-//            Advertisement advertisement = new Advertisement();
-//            String offerText = request.getParameter(ADVERTISEMENT_TEXT);
-//            String restaurantId = request.getParameter(ADVERTISEMENT_OF_RESTAURANT_ID);
-//            HashMap<String, String> dataErrorMap = attributes.vaidateInsertAdvertisement(offerText, restaurantId);
-//            if (dataErrorMap.isEmpty()){
-//                advertisement.setOfferText(offerText);
-//                advertisement.setRestaurantId(Integer.valueOf(restaurantId));
-//                advertisementsService.insert(advertisement);
-//                request.setAttribute("offerText", offerText);
-//                request.setAttribute("restaurantId", restaurantId);
-//            }else {
-//                request.setAttribute("offerText", offerText);
-//                request.setAttribute("restaurantId", restaurantId);
-//                request.setAttribute("errorsOfferText", dataErrorMap.get("offerText"));
-//                request.setAttribute("errorsRestaurantId", dataErrorMap.get("id"));
-//                request.setAttribute("nullErrors", "");
-//                request.setAttribute("errors", dataErrorMap);
-//            }
-//        }catch (DaoException e) {
-//            e.printStackTrace();
-//            request.setAttribute("error", e);
-//        }
-//    }
-
 
     //TODO Исправить ошибку с удалением номера которого нет
-    protected String deleteAdvertisement(HttpServletRequest request) throws IOException, ServletException{
+    protected String deleteAdvertisement(HttpServletRequest request) throws IOException, ServletException {
         String link;
         try {
             String id = request.getParameter("advertisementIdForDelete");
-            if(attributes.validId(id).isEmpty()){
+            if (attributes.validId(id).isEmpty()) {
                 request.setAttribute("id", id);
                 advertisementsService.delete(Integer.parseInt(id));
                 link = SUCCESS_DELETE_ADVERTISEMENT_PAGE;
-            }else {
+            } else {
                 request.setAttribute("advertisementId", id);
                 request.setAttribute("errors", attributes.validId(id));
                 link = ERROR_PAGE;
             }
-        }catch (DaoException e) {
+        } catch (DaoException e) {
             e.printStackTrace();
             request.setAttribute("error", e);
             link = ERROR_PAGE;
         }
         return link;
     }
-
-    protected void deleteAdvertisementAjax(HttpServletRequest request) throws IOException, ServletException{
-        try {
-            String id = request.getParameter("idForDelete");
-            if(attributes.validId(id).isEmpty()){
-                request.setAttribute("id", id);
-                advertisementsService.delete(Integer.parseInt(id));
-            }else {
-                request.setAttribute("advertisementId", id);
-                request.setAttribute("errors", attributes.validId(id));
-            }
-        }catch (DaoException e) {
-            e.printStackTrace();
-            request.setAttribute("error", e);
-        }
-    }
-
-
-
 }
 
 

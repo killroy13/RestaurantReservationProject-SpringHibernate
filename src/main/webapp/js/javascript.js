@@ -18,14 +18,62 @@ window.onload = function () {
 
     document.querySelector('#deladv').onclick = function () {
 
-        var params = 'idForDelete=' + inp_id.value;
+        //var params = 'idForDelete=' + inp_id.value;
+        var params = 'deleteAdvertisementAjax=' + inp_id.value;
+
+
+
+
+
+        var request = new XMLHttpRequest();
+        var forma = document.getElementById('fordel');
+        var delid = forma.elements.delid.value;
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+
+                //document.querySelector('#result').innerHTML = request.responseText;
+
+                //alert("Hello from hell JS" /*+ delid*/);
+
+            }
+        }
+        request.open('POST', 'myServlet', true);
+        //request.open('POST', 'jsp/showAdvertisements.jsp' + encodeURIComponent(delid), true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        request.send('action=' + deleteAdvertisementAjax);
+
+
+
+    //    var request = new XMLHttpRequest();
+    //    var forma=document.getElementById('new');
+    //    var firstname=forma.elements.firstname.value;
+    //    var secondname=forma.elements.secondname.value;
+    //    request.open('GET','Students/newstudent'+'?'+'firstname='+encodeURIComponent(firstname)+'&'+'secondname='+encodeURIComponent(secondname),true);
+    //    request.addEventListener('readystatechange', function() {
+    //        var request1=new XMLHttpRequest();
+    //        if (request.readyState==4 && request.status == 200) {
+    //
+    //            request1.open('GET', 'Students/select', true);
+    //            request1.addEventListener('readystatechange', function() {
+    //                if (request1.readyState==4 && request1.status == 200) {
+    //                    document.getElementById("select").innerHTML = request1.responseText;
+    //                }
+    //            });
+    //            request1.send();
+    //        }
+    //    });
+    //    request.send();
+    //}
+
+
+
 
 
 
         //alert(inp_id.value);
 
 
-        dell(params);
+        //dell(params);
     }
 
 
@@ -35,27 +83,22 @@ window.onload = function () {
 }
 
 
-function dell(params) {
-    var request = new XMLHttpRequest();
-    var forma = document.getElementById('fordel');
-    var delid = forma.elements.delid.value;
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-
-            document.querySelector('#result').innerHTML = request.responseText;
-            alert("Hello from hell JS" /*+ delid*/);
-
-        }
-    }
-    request.open('POST', 'myServlet', true);
-    //request.open('POST', 'jsp/showAdvertisements.jsp' + encodeURIComponent(delid), true);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(params);
-
-}
-
-
-
-
-
+//function dell(deleteAdvertisementAjax) {
+//    var request = new XMLHttpRequest();
+//    var forma = document.getElementById('fordel');
+//    var delid = forma.elements.delid.value;
+//    request.onreadystatechange = function () {
+//        if (request.readyState == 4 && request.status == 200) {
+//
+//            document.querySelector('#result').innerHTML = request.responseText;
+//            alert("Hello from hell JS" /*+ delid*/);
+//
+//        }
+//    }
+//    request.open('POST', 'myServlet', true);
+//    //request.open('POST', 'jsp/showAdvertisements.jsp' + encodeURIComponent(delid), true);
+//    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//    request.send('action=' + deleteAdvertisementAjax);
+//
+//}
 
