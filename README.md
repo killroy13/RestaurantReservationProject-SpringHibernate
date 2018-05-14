@@ -1,10 +1,13 @@
 # Reservation Project
 
-The project allows you to book a place in a bars.
+ Description: This is an electronic system of reserving places in restaurants. The application allows you to find the best place for rest and entertainment, to learn information about the restaurant and to focus on reviews from other customers (users) when choosing.
 
+ Used technologies:
 
- > DAO, JDBC (ODBS), Servlets, Jsp, MVC, Maven, JUnit, DBUnit, TestNG
+ > DAO, JDBC, Servlets, Jsp, MVC, Maven, JUnit, DBUnit, TestNG, Tomcat, MySQL
 
  > Spring framework, Hibernate
 
- > test Ajax, jQuery
+ > Ajax, jQuery
+
+
